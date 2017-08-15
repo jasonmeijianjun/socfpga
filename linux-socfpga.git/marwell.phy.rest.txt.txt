@@ -1,0 +1,51 @@
+static void cycone_v5_marvell_phy_reset(void) 
+    {
+    static void __iomem *cycone_gpio1_base;
+    static void __iomem *rst_mgr_base;
+
+    u32 odata;
+
+    printk("%s %d\r\n", __func__, __LINE__);
+
+    cycone_gpio1_base = ioremap(0xFF709000, 0x78);
+    rst_mgr_base = ioremap(0xFFD05000, 0x28);
+
+    odata = readl(rst_mgr_base + 0x14);
+    printk("0xFFD05014 = 0x%08x\r\n",odata);
+
+    odata = readl(cycone_gpio1_base + 0x6c);
+    printk("gpio1.gpio_ver_id_code = 0x%08x\r\n",odata);
+    odata = readl(cycone_gpio1_base + 0x70);
+    printk("gpio1.gpio_config_reg2 = 0x%08x\r\n",odata);
+    odata = readl(cycone_gpio1_base + 0x74);
+    printk("gpio1.gpio_config_reg1 = 0x%08x\r\n",odata);
+    
+
+    odata = readl(cycone_gpio1_base + 4);
+    printk("gpio1.dirdata = 0x%08x\r\n",odata);
+    odata = odata | (1<<28);
+    writel(odata, cycone_gpio1_base + 4);
+    odata = readl(cycone_gpio1_base + 4);
+    printk("gpio1.dirdata = 0x%08x\r\n",odata);
+
+    odata = readl(cycone_gpio1_base);
+    printk("gpio1.data = 0x%08x\r\n",odata);
+    odata = odata & (~(1<<28));
+    writel(odata, cycone_gpio1_base);
+    printk("gpio1.data = 0x%08x\r\n",odata);
+    
+    printk("wait 10ms\r\n");
+    
+    mdelay(10);
+
+    odata = readl(cycone_gpio1_base);
+    odata = odata | (1<<28);
+    writel(odata, cycone_gpio1_base);
+
+    odata = readl(cycone_gpio1_base);
+    printk("gpio1.data = 0x%08x\r\n",odata);
+    odata = readl(cycone_gpio1_base+4);
+    printk("gpio1.dir_data = 0x%08x\r\n",odata);
+
+    printk("%s %d\r\n", __func__, __LINE__);
+    }
