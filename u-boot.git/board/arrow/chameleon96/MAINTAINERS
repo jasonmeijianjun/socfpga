@@ -1,0 +1,5 @@
+CHAMELEON96 BOARD
+M:	Dan Negvesky <dan.negvesky@gmail.com>
+S:	Maintained
+F:	include/configs/socfpga_chameleon96.h
+F:	configs/socfpga_chameleon96_defconfig
