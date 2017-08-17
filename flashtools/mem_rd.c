@@ -60,7 +60,7 @@ int main(int argc,char *argv[])
 	}
 
 	fseek(outfile,0,SEEK_SET);	
-	fwrite(outbuf, SIZE/2 ,1,outfile);
+	fwrite(outbuf, SIZE ,1,outfile);
 	fclose(outfile);
 										  
 	close(fd);  
