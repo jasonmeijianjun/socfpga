@@ -7,7 +7,7 @@
 #include <stdlib.h>
  
 //#define PHY_BASE 0x171d4a000 
-#define SIZE 0x40000
+#define SIZE 0x800000
 int main(int argc,char *argv[])  
 {  
 	unsigned char * map_base;  

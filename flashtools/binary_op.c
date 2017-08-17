@@ -8,7 +8,7 @@ int main()
 	FILE * infile, *outfile_odd,* outfile_even;
 	char * inbuf, * outbuf_odd,* outbuf_even; 	
 
-	infile = fopen("test.bin","rb");
+	infile = fopen("BOOT.bin","rb");
 	if ( !infile ) {
 		printf("Unable to open input file!");
 		return 1;
