@@ -15,7 +15,6 @@
 
 PRELOADER_SETTINGS_DIR := ../../hps_isw_handoff/soc_system_hps_0
 
-#TGZ := $(SOCEDS_DEST_ROOT)/host_tools/altera/preloader/uboot-socfpga.tar.gz
 TGZ := ./uboot-socfpga.git.tar.gz
 #CROSS_COMPILE := arm-altera-eabi-
 
@@ -211,11 +210,11 @@ tools: $(CONFIG)
 .PHONY: src
 src: $(UNTAR_SRC)
 
-$(UNTAR_SRC): $(TGZ)
-	@$(RM) $(PRELOADER_SRC_DIR)
-	$(untar_recipe)
-	@$(CHMOD) -R 755 $(PRELOADER_SRC_DIR)
-	$(stamp)
+#$(UNTAR_SRC): $(TGZ)
+#	@$(RM) $(PRELOADER_SRC_DIR)
+#	$(untar_recipe)
+#	@$(CHMOD) -R 755 $(PRELOADER_SRC_DIR)
+#	$(stamp)
 
 #####
 # Update
