@@ -1,0 +1,4 @@
+-:  include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/socfpga_arria5.dtsi arch/arm/dts/socfpga.dtsi \
+ arch/arm/dts/skeleton.dtsi \
+ arch/arm/dts/include/dt-bindings/reset/altr,rst-mgr.h
