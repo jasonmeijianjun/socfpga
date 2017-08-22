@@ -1,0 +1,12 @@
+prefix=/build/arc/temp/177890587/SOCEDS_work_root/host_tools/python/python64_2.7.5/install/python-2.7.5
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: OpenSSL
+Description: Secure Sockets Layer and cryptography libraries and tools
+Version: 1.0.1f
+Requires: 
+Libs: -L${libdir} -lssl -lcrypto
+Libs.private: -L/build/arc/temp/177890587/SOCEDS_work_root/host_tools/python/python64_2.7.5/install/python-2.7.5/lib -ldl -lz
+Cflags: -I${includedir} 

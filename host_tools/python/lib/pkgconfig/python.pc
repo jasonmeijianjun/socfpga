@@ -1,0 +1,13 @@
+prefix=/build/arc/temp/177890587/SOCEDS_work_root/host_tools/python/python64_2.7.5/install/python-2.7.5
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Python
+Description: Python library
+Requires: 
+Version: 2.7
+Libs.private: -lpthread -ldl  -lutil
+Libs: -L${libdir} -lpython2.7
+Cflags: -I${includedir}/python2.7 
+

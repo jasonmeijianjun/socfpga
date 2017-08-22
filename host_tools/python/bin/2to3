@@ -1,0 +1,5 @@
+#!/build/arc/temp/177890587/SOCEDS_work_root/host_tools/python/python64_2.7.5/install/python-2.7.5/bin/python2.7
+import sys
+from lib2to3.main import main
+
+sys.exit(main("lib2to3.fixes"))

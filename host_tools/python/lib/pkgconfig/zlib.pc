@@ -1,0 +1,13 @@
+prefix=/build/arc/temp/177890587/SOCEDS_work_root/host_tools/python/python64_2.7.5/install/python-2.7.5
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+sharedlibdir=${libdir}
+includedir=${prefix}/include
+
+Name: zlib
+Description: zlib compression library
+Version: 1.2.8
+
+Requires:
+Libs: -L${libdir} -L${sharedlibdir} -lz
+Cflags: -I${includedir}
