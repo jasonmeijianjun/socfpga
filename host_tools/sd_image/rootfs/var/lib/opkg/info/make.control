@@ -1,0 +1,17 @@
+Package: make
+Version: 4.2.1-r0.0
+Description: GNU tool that controls the build process
+ Make is a tool which controls the generation of executables and other
+ non-source files of a program from the program's source files.  Make gets
+ its knowledge of how to build your program from a file called the
+ makefile, which lists each of the non-source files and how to compute it
+ from other files.
+Section: devel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3 & LGPLv2
+Architecture: armv7at2hf-neon
+OE: make
+Homepage: http://www.gnu.org/software/make/
+Depends: libc6 (>= 2.24)
+Source: http://ftp.gnu.org/gnu/make/make-4.2.1.tar.bz2

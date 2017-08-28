@@ -1,0 +1,14 @@
+Package: libatomic1
+Version: linaro-6.2-r2016.11.0
+Description: GNU C++11 atomics support library
+ Runtime libraries from GCC.
+Section: devel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPL-3.0-with-GCC-exception
+Architecture: armv7at2hf-neon
+OE: gcc-runtime
+Homepage: http://www.gnu.org/software/gcc/
+Depends: libc6 (>= 2.24)
+Provides: libatomic
+Source: None

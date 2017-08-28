@@ -1,0 +1,58 @@
+Configured Openembedded layers:
+meta-angstrom     = work:709abee819ee349dab873f6abb02c404b2c65331
+meta-oe           
+meta-efl          
+meta-gpe          
+meta-gnome        
+meta-xfce         
+meta-initramfs    
+meta-multimedia   
+meta-networking   
+meta-webserver    
+meta-ruby         
+meta-filesystems  
+meta-perl         
+meta-python       = work:fe5c83312de11e80b85680ef237f8acb04b4b26e
+meta-qt4          = work:2c7f8df9039be498f8a2232d1428adb7f4e5e800
+meta-java         = work:6eed0bbfa831f736bbab4d285c57deeec8f5d562
+meta-browser      = work:c3978ffb9a58009d63cb948249bbba7d3411cc4a
+meta-mono         = work:e96e04f81b19e758e5c1ef6df8130871999e115c
+meta-qt5          = work:81fb771c3f31110e50eebcb004809361fdb28194
+meta-systemd      = work:fe5c83312de11e80b85680ef237f8acb04b4b26e
+meta-ros          = work:6581c77b04495dcc9f5a371a7dc6077638e64c61
+meta-uav          = work:95b5977627853f82b13310c35739b51cf449a1d6
+meta-telephony    = work:8cf5a67850adf270bc2fdb4c0ed708b0ba037670
+meta-maker        = work:c039fafa7a0276769d0928d16bdacd2012f2aff6
+meta-kodi         = work:d9d0d957b47e9c214368d332e1342ac5d1591746
+meta-virtualization = work:1beb18840539f0366b6a5f20bcff98c99534c496
+meta-backports    = work:4484246e00c38cda7c69a5e4a43352b1675466b5
+common-bsp        = work:cb5514d39e3efc69f05c23e05ff8ff9e52cc6659
+meta-ti           = work:8457b4359319c50a4dce68afecfced5b367985fb
+meta-freescale    = work:03f977d583e4c6bc116531494079d256419a31f9
+meta-freescale-3rdparty = work:742fbd6da4a87c4412dbecee42f859e99c9cb614
+meta-altera       = work:9d22d2dab4fd219a9d9651cbfce1bab3c3a7fb6a
+meta-nslu2        = work:df0f6b8337d73c79a0047ba348ebd74e3778a3cf
+meta-htc          
+meta-nokia        
+meta-openmoko     
+meta-palm         = work:32541df3f691fc6c5b6103d5cdb1ee44d4897b5a
+meta-handheld     = work:3bf35a8a1da5b1ef63acd70988fcb89128297d97
+meta-intel        = work:6add41510412ca196efb3e4f949d403a8b6f35d7
+meta-sunxi        = work:318c872680fb095910a4d1c81a596152605c365e
+meta-raspberrypi  = work:17f0c233054791ff21dcaf747f842d901282ae05
+meta-dominion     = work:333388d714e5320ded4577fd7a1fbebb155e837e
+meta-atmel        = work:6a22f84388f9c444627e40a08cb89de462cd0a5b
+meta-exynos       = work:d91f975a06e0797340432908fc89a1f1cadc1ee3
+meta-gumstix-community = work:c8e7ec7f391a4b66adadac090d55beba18e1117e
+meta-qcom         = work:161269ba1605222ffc5026e219da57af2d712d51
+common            = work:ca682b9801bc04e56acd52a0384ed6bd711834a7
+meta-edison       = work:395c66f21526ee07d963233218e4eaa8d47f32dd
+meta-96boards     = work:15c1165b2724f105ddb0f3851fe4cd2eb6b565bf
+meta-chameleon96  = work:55002accd1cdb47c882ab55e81f566eb01199760
+meta-chip         = work:ddfd006069216ddcd78d5dcdd3f67ac209a438ab
+meta-linaro       
+meta-linaro-toolchain 
+meta-aarch64      
+meta-optee        = work:992eaa0a1969c2056a5321c122eaa8cd808c1c82
+meta              = work:112ae104287ad4078a9fa90fb2a42f4c814ef824
+

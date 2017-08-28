@@ -1,0 +1,12 @@
+Package: packagegroup-base-extended
+Version: 1.0-r83.0
+Description: Merge machine and distro options to create a basic machine task/package
+ Merge machine and distro options to create a basic machine task/package.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: packagegroup-base
+Depends: packagegroup-base
+Source: None

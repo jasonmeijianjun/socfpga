@@ -1,0 +1,14 @@
+Package: libopkg1
+Version: 1:0.3.3-r0.0
+Description: Open Package Manager library
+ Open Package Manager.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2+
+Architecture: armv7at2hf-neon
+OE: opkg
+Homepage: http://code.google.com/p/opkg/
+Depends: libarchive (>= 3.2.2), libbz2-1 (>= 1.0.6), libc6 (>= 2.24), libxml2 (>= 2.9.4), libz1 (>= 1.2.8)
+Provides: libopkg
+Source: http://downloads.yoctoproject.org/releases/opkg/opkg-0.3.3.tar.gz file://opkg-configure.service file://opkg.conf file://0001-opkg_conf-create-opkg.lock-in-run-instead-of-var-run.patch

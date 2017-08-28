@@ -1,0 +1,13 @@
+Package: netbase
+Version: 1:5.3-r0.0
+Description: Basic TCP/IP networking support
+ This package provides the necessary infrastructure for basic TCP/IP based
+ networking
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2
+Architecture: armv7at2hf-neon
+OE: netbase
+Homepage: http://packages.debian.org/netbase
+Source: http://snapshot.debian.org/archive/debian/20160728T043443Z/pool/main/n/netbase/netbase_5.3.tar.xz file://netbase-add-rpcbind-as-an-alias-to-sunrpc.patch file://hosts

@@ -1,0 +1,3 @@
+/usr/bin/patch
+/bin/busybox.nosuid 50
+/usr/bin/patch.patch 100

@@ -1,0 +1,11 @@
+Package: mobile-broadband-provider-info
+Version: 1:20151214-r0.0
+Description: Mobile Broadband Service Provider Database
+ Mobile Broadband Service Provider Database.
+Section: network
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: PD
+Architecture: armv7at2hf-neon
+OE: mobile-broadband-provider-info
+Source: git://git.gnome.org/mobile-broadband-provider-info

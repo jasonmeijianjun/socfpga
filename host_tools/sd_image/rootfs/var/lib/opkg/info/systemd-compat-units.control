@@ -1,0 +1,12 @@
+Package: systemd-compat-units
+Version: 1.0-r29.0
+Description: Enhances systemd compatilibity with existing SysVinit scripts
+ Enhances systemd compatilibity with existing SysVinit scripts.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: armv7at2hf-neon
+OE: systemd-compat-units
+Depends: systemd
+Source: None

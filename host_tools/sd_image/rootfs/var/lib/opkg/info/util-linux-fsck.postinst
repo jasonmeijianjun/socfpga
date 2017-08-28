@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --install /sbin/fsck fsck /sbin/fsck.util-linux 80
+# End section update-alternatives

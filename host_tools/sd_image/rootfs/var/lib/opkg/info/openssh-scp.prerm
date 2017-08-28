@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  scp /usr/bin/scp.openssh
+# End section update-alternatives

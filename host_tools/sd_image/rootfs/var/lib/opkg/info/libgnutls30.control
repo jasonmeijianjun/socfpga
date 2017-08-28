@@ -1,0 +1,14 @@
+Package: libgnutls30
+Version: 3.5.3-r0.0
+Description: GNU Transport Layer Security Library
+ GNU Transport Layer Security Library.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: LGPLv2.1+
+Architecture: armv7at2hf-neon
+OE: gnutls
+Homepage: http://www.gnu.org/software/gnutls/
+Depends: libc6 (>= 2.24), libgmp10 (>= 6.1.1), libidn11 (>= 1.33), libz1 (>= 1.2.8), nettle (>= 3.2)
+Provides: gnutls
+Source: ftp://ftp.gnutls.org/gcrypt/gnutls/v3.5/gnutls-3.5.3.tar.xz file://correct_rpl_gettimeofday_signature.patch file://0001-configure.ac-fix-sed-command.patch file://use-pkg-config-to-locate-zlib.patch file://0001-Use-correct-include-dir-with-minitasn.patch file://CVE-2016-7444.patch

@@ -1,0 +1,5 @@
+/usr/bin/get_device
+/usr/bin/get_module
+/usr/bin/systool
+/usr/bin/dlist_test
+/usr/bin/get_driver

@@ -1,0 +1,2 @@
+#!/bin/sh
+update-alternatives --install /boot/zImage zImage /boot/zImage-4.1.33-ltsi-altera 40133 || true

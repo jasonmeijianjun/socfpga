@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  sed /bin/sed.sed
+# End section update-alternatives

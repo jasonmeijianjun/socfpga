@@ -1,0 +1,3 @@
+/lib/systemd/systemd-vconsole-setup
+/lib/systemd/system/sysinit.target.wants/systemd-vconsole-setup.service
+/lib/systemd/system/systemd-vconsole-setup.service

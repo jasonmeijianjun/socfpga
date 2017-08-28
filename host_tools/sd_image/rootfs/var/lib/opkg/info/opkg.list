@@ -1,0 +1,9 @@
+/usr/bin/opkg
+/usr/share/opkg/intercept/update-modules
+/etc/opkg/opkg.conf
+/usr/share/opkg/intercept/depmod
+/usr/share/opkg/intercept/
+/usr/share/opkg/intercept/ldconfig
+/lib/systemd/system/opkg-configure.service
+/usr/bin/opkg-check-config
+/usr/share/opkg/

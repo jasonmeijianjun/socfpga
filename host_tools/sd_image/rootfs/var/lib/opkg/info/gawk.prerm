@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  awk /usr/bin/gawk
+# End section update-alternatives

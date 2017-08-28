@@ -1,0 +1,15 @@
+Package: base-files-dev
+Version: 3.0.14-r89.0
+Description: Miscellaneous files for the base system - Development files
+ The base-files package creates the basic system directory structure and
+ provides a small set of key configuration files for the system.  This
+ package contains symbolic links, header files, and related items
+ necessary for software development.
+Section: devel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2
+Architecture: chameleon96
+OE: base-files
+Depends: base-files (= 3.0.14-r89.0)
+Source: file://rotation file://nsswitch.conf file://motd file://host.conf file://profile file://shells file://fstab file://filesystems file://issue.net file://issue file://usbd file://share/dot.bashrc file://share/dot.profile file://licenses/GPL-2

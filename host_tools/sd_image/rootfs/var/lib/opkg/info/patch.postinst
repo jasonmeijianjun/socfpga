@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --install /usr/bin/patch patch /usr/bin/patch.patch 100
+# End section update-alternatives

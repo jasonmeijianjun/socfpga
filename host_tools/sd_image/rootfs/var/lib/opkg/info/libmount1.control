@@ -1,0 +1,13 @@
+Package: libmount1
+Version: 2.28.1-r0.0
+Description: util-linux libmount
+ util-linux libmount
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2+ & LGPLv2.1+ & BSD
+Architecture: armv7at2hf-neon
+OE: util-linux
+Depends: libblkid1 (>= 2.28.1), libc6 (>= 2.24), libuuid1 (>= 2.28.1)
+Provides: util-linux-libmount
+Source: http://kernel.org/pub/linux/utils/util-linux/v2.28/util-linux-2.28.1.tar.xz file://configure-sbindir.patch file://runuser.pamd file://runuser-l.pamd file://ptest.patch file://run-ptest file://display_testname_for_subtest.patch file://avoid_parallel_tests.patch file://uuid-test-error-api.patch

@@ -1,0 +1,14 @@
+Package: libxcb-shm0
+Version: 1.12-r0.0
+Description: XCB library module for shm
+ XCB library module for shm
+Section: x11/libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: armv7at2hf-neon
+OE: libxcb
+Homepage: http://xcb.freedesktop.org
+Depends: libc6 (>= 2.24), libxau6 (>= 1.0.8), libxcb1 (>= 1.12), libxdmcp6 (>= 1.1.2)
+Provides: libxcb-shm
+Source: http://xcb.freedesktop.org/dist/libxcb-1.12.tar.bz2 file://xcbincludedir.patch file://disable-check.patch file://gcc-mips-pr68302-mips-workaround.patch file://Fix-inconsistent-use-of-tabs-vs.-space.patch

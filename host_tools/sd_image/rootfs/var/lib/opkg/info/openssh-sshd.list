@@ -1,0 +1,9 @@
+/lib/systemd/system/sshd.socket
+/lib/systemd/system/sshdgenkeys.service
+/usr/sbin/sshd
+/etc/ssh/sshd_config_readonly
+/etc/ssh/moduli
+/lib/systemd/system/sshd@.service
+/etc/ssh/sshd_config
+/etc/pam.d/sshd
+/etc/default/volatiles/99_sshd

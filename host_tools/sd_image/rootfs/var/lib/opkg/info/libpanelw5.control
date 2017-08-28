@@ -1,0 +1,14 @@
+Package: libpanelw5
+Version: 6.0+20160625-r0.0
+Description: ncurses panelw library
+ ncurses panelw library
+Section: libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: armv7at2hf-neon
+OE: ncurses
+Homepage: http://www.gnu.org/software/ncurses/ncurses.html
+Depends: libc6 (>= 2.24), libncursesw5 (>= 6.0+20160625), libtinfo5 (>= 6.0+20160625)
+Provides: ncurses-libpanelw
+Source: git://anonscm.debian.org/collab-maint/ncurses.git file://tic-hang.patch file://config.cache

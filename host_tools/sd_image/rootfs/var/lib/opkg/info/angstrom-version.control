@@ -1,0 +1,14 @@
+Package: angstrom-version
+Version: 2:v2016.12-r12.0
+Description: angstrom-version version v2016.12-r12
+ angstrom-version version v2016.12-r12.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: angstrom-version
+Provides: os-release
+Replaces: os-release
+Conflicts: os-release
+Source: file://lsb_release

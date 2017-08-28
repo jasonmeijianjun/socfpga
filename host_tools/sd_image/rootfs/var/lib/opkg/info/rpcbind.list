@@ -1,0 +1,5 @@
+/usr/sbin/rpcbind
+/etc/rpcbind.conf
+/lib/systemd/system/rpcbind.socket
+/usr/sbin/rpcinfo
+/lib/systemd/system/rpcbind.service

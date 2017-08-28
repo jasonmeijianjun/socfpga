@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --install /sbin/sulogin sulogin /sbin/sulogin.util-linux 80
+# End section update-alternatives

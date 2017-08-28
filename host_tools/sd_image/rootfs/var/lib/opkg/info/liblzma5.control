@@ -1,0 +1,14 @@
+Package: liblzma5
+Version: 5.2.0-r0.0
+Description: Utilities for managing LZMA compressed files
+ Utilities for managing LZMA compressed files.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: PD
+Architecture: armv7at2hf-neon
+OE: xz
+Homepage: http://tukaani.org/xz/
+Depends: libc6 (>= 2.24)
+Provides: liblzma
+Source: http://tukaani.org/xz/xz-5.2.0.tar.gz

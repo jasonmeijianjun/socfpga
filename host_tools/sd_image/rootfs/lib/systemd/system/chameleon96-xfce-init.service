@@ -1,0 +1,10 @@
+[Unit]
+Description=Arrow Chameleon96 XFCE Session
+After=chameleon96-fpga-init.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/startxfce4
+
+[Install]
+WantedBy=basic.target

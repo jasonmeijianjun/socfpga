@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  sulogin /sbin/sulogin.util-linux
+# End section update-alternatives

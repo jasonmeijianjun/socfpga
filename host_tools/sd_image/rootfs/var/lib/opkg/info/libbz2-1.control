@@ -1,0 +1,18 @@
+Package: libbz2-1
+Version: 1.0.6-r5.0
+Description: Very high-quality data compression program
+ bzip2 compresses files using the Burrows-Wheeler block-sorting text
+ compression algorithm, and Huffman coding. Compression is generally
+ considerably better than that achieved by more conventional
+ LZ77/LZ78-based compressors, and approaches the performance of the PPM
+ family of statistical compressors.
+Section: console/utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: bzip2
+Architecture: armv7at2hf-neon
+OE: bzip2
+Homepage: http://www.bzip.org/
+Depends: libc6 (>= 2.24)
+Provides: libbz2
+Source: http://www.bzip.org/1.0.6/bzip2-1.0.6.tar.gz file://fix-bunzip2-qt-returns-0-for-corrupt-archives.patch file://configure.ac;subdir=bzip2-1.0.6 file://Makefile.am;subdir=bzip2-1.0.6 file://run-ptest file://CVE-2016-3189.patch

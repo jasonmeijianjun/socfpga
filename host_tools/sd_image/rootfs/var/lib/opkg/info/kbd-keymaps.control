@@ -1,0 +1,11 @@
+Package: kbd-keymaps
+Version: 2.0.3-r0.0
+Description: Keytable files and keyboard utilities
+ Keytable files and keyboard utilities.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2+
+Architecture: armv7at2hf-neon
+OE: kbd
+Source: http://kernel.org/pub/linux/utils/kbd/kbd-2.0.3.tar.xz file://run-ptest

@@ -1,0 +1,12 @@
+Package: openssl-conf
+Version: 1.0.2j-r0.0
+Description: Secure Socket Layer
+ Secure Socket Layer (SSL) binary and related cryptographic tools.
+Section: libs/network
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: openssl
+Architecture: armv7at2hf-neon
+OE: openssl
+Homepage: http://www.openssl.org/
+Source: http://www.openssl.org/source/openssl-1.0.2j.tar.gz file://find.pl;subdir=openssl-1.0.2j/util/ file://run-ptest file://openssl-c_rehash.sh file://configure-targets.patch file://shared-libs.patch file://oe-ldflags.patch file://engines-install-in-libdir-ssl.patch file://debian1.0.2/block_diginotar.patch file://debian1.0.2/block_digicert_malaysia.patch file://debian/ca.patch file://debian/c_rehash-compat.patch file://debian/debian-targets.patch file://debian/man-dir.patch file://debian/man-section.patch file://debian/no-rpath.patch file://debian/no-symbolic.patch file://debian/pic.patch file://debian1.0.2/version-script.patch file://openssl_fix_for_x32.patch file://fix-cipher-des-ede3-cfb1.patch file://openssl-avoid-NULL-pointer-dereference-in-EVP_DigestInit_ex.patch file://openssl-fix-des.pod-error.patch file://Makefiles-ptest.patch file://ptest-deps.patch file://openssl-1.0.2a-x32-asm.patch file://ptest_makefile_deps.patch file://configure-musl-target.patch file://parallel.patch file://openssl-util-perlpath.pl-cwd.patch file://CVE-2016-7055.patch file://0001-CVE-2017-3731.patch file://0002-CVE-2017-3731.patch

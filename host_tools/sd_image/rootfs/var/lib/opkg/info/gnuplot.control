@@ -1,0 +1,14 @@
+Package: gnuplot
+Version: 4.6.5-r0.0
+Description: gnuplot version 4.6.5-r0
+ Gnuplot is a portable command-line driven interactive datafile (text or
+ binary) and function plotting utility.
+Section: console/scientific
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: gnuplot
+Architecture: armv7at2hf-neon
+OE: gnuplot
+Homepage: http://www.gnuplot.info/
+Depends: libc6 (>= 2.24), libcairo2 (>= 1.14.6), libgcc1 (>= linaro-6.2), libgd3 (>= 2.2.3), libglib-2.0-0 (>= 2.48.2), libreadline6 (>= 6.3), pango (>= 1.40.1)
+Source: http://downloads.sourceforge.net/gnuplot/gnuplot-4.6.5.tar.gz;name=archive http://www.mneuroth.de/privat/zaurus/qtplot-0.2.tar.gz;name=qtplot file://subdirs.patch file://lua-loadlibs-configure-in-fix.patch file://gnuplot.desktop file://gnuplot.png

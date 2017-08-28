@@ -1,0 +1,12 @@
+Package: kernel-modules
+Version: 4.1.33-ltsi+git0+b84195c056-r0.1
+Description: Linux kernel
+ Kernel modules meta package
+Section: kernel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2
+Architecture: chameleon96
+OE: linux-altera-ltsi
+Depends: kernel-module-altera-sysid, kernel-module-ansi-cprng, kernel-module-dmatest, kernel-module-e1000e, kernel-module-g-acm-ms, kernel-module-g-cdc, kernel-module-g-ether, kernel-module-g-ffs, kernel-module-g-hid, kernel-module-g-mass-storage, kernel-module-g-multi, kernel-module-g-ncm, kernel-module-g-printer, kernel-module-g-serial, kernel-module-g-zero, kernel-module-gadgetfs, kernel-module-i2c-algo-bit, kernel-module-igb, kernel-module-ixgbe, kernel-module-krng, kernel-module-libcomposite, kernel-module-mdio, kernel-module-nvme, kernel-module-rng, kernel-module-rng-core, kernel-module-u-ether, kernel-module-u-serial, kernel-module-usb-f-acm, kernel-module-usb-f-ecm, kernel-module-usb-f-ecm-subset, kernel-module-usb-f-eem, kernel-module-usb-f-fs, kernel-module-usb-f-hid, kernel-module-usb-f-mass-storage, kernel-module-usb-f-ncm, kernel-module-usb-f-obex, kernel-module-usb-f-printer, kernel-module-usb-f-rndis, kernel-module-usb-f-serial, kernel-module-usb-f-ss-lb
+Source: git://github.com/altera-opensource/linux-socfpga.git;protocol=https;branch=socfpga-4.1.33-ltsi file://socfpga-4.1-ltsi/cfg/altvipfb.cfg file://socfpga-4.1-ltsi/cfg/block.cfg file://socfpga-4.1-ltsi/cfg/cma.cfg file://socfpga-4.1-ltsi/cfg/configfs.cfg file://socfpga-4.1-ltsi/cfg/gpio-keys.cfg file://socfpga-4.1-ltsi/cfg/led-triggers.cfg file://socfpga-4.1-ltsi/cfg/usb-gadget.cfg file://socfpga-4.1-ltsi/patches/0001-add-Chameleon96-devicetree.patch

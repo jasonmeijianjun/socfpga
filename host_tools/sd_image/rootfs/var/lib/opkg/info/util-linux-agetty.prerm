@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  getty /sbin/agetty
+# End section update-alternatives

@@ -1,0 +1,12 @@
+Package: chameleon96-lighttpd-conf
+Version: 1.0r1-r1.0
+Description: Chameleon96 lighttpd webserver customization
+ Chameleon96 lighttpd configuration customization to enable cgi, set 404
+ page, and change serverroot
+Section: chameleon96
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: BSD-3-Clause
+Architecture: all
+OE: chameleon96-lighttpd-conf
+Source: None

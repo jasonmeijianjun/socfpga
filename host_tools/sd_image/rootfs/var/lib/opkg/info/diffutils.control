@@ -1,0 +1,13 @@
+Package: diffutils
+Version: 3.4-r0.0
+Description: Diffutils contains tools used for finding differences between files
+ Diffutils contains the GNU diff, diff3, sdiff, and cmp utilities. These
+ programs are usually used for creating patch files.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3+
+Architecture: armv7at2hf-neon
+OE: diffutils
+Depends: libc6 (>= 2.24), update-alternatives-opkg
+Source: http://ftp.gnu.org/gnu/diffutils/diffutils-3.4.tar.xz file://0001-Unset-need_charset_alias-when-building-for-musl.patch file://run-ptest

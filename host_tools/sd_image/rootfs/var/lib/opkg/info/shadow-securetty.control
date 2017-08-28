@@ -1,0 +1,11 @@
+Package: shadow-securetty
+Version: 4.2.1-r3.0
+Description: Provider of the machine specific securetty file
+ Provider of the machine specific securetty file.
+Section: base utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: shadow-securetty
+Source: file://securetty

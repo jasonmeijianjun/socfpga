@@ -1,0 +1,13 @@
+Package: packagegroup-base-ppp
+Version: 1.0-r83.0
+Description: PPP dial-up protocol support
+ Merge machine and distro options to create a basic machine task/package.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: packagegroup-base
+Depends: ppp, ppp-dialin
+Recommends: kernel-module-ppp-async, kernel-module-ppp-deflate, kernel-module-ppp-generic, kernel-module-ppp-mppe, kernel-module-slhc
+Source: None

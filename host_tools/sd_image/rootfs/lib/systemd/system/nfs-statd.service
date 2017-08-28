@@ -1,0 +1,12 @@
+[Unit]
+Description=NFS file locking service
+After=rpcbind.service
+Requires=rpcbind.service
+Before=remote-fs-pre.target
+
+[Service]
+EnvironmentFile=-/etc/nfs-utils.conf
+ExecStart=/usr/sbin/rpc.statd -F $STATD_OPTS
+
+[Install]
+WantedBy=multi-user.target
