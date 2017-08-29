@@ -31,7 +31,7 @@ cd -
 rm -f ./host_tools/sd_image/zImage
 rm -f ./host_tools/sd_image/socfpga.dtb
 cp linux-socfpga.git/arch/arm/boot/zImage ./host_tools/sd_image/kernel/
-cp linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb ./host_tools/sd_image/kernel/
+cp linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb  ./host_tools/sd_image/kernel/socfpga_cyclone5_chameleon96.dtb
 cd ./host_tools/sd_image
 
 source makeimage.sh
