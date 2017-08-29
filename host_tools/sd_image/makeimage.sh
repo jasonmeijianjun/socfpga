@@ -1,4 +1,11 @@
 #!/bin/bash
+# Boot partition volume id
+BOOTDD_VOLUME_ID="chameleon96"
+
+# Boot partition size [in KiB] -> size 2M for A10
+BOOT_SPACE="2048"
+
+# Fat partition size
 FAT_SPACE="102400"
 
 # uBoot ENV offset
@@ -17,6 +24,7 @@ ROOTFS_SIZE_MOD="16384" #16KiB
 # Align partitions
 BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)   #(2048 + 1024 -1 = 3071)
 BOOT_SPACE_ALIGNED=$(expr ${BOOT_SPACE_ALIGNED} - ${BOOT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT}) #3071 - 3071%1024 = 2048
+
 FAT_SPACE_ALIGNED=$(expr ${FAT_SPACE} + ${IMAGE_ROOTFS_ALIGNMENT} - 1)   # 102400  + 1024 -1 = 102400 + 1023
 FAT_SPACE_ALIGNED=$(expr ${FAT_SPACE_ALIGNED} - ${FAT_SPACE_ALIGNED} % ${IMAGE_ROOTFS_ALIGNMENT}) # 102400 + 1023 - (102400 + 1023)%1024 = 102400
 
@@ -26,12 +34,14 @@ ROOTFS_SIZE_ALIGNED=$(expr ${ROOTFS_SIZE_ALIGNED} \- ${ROOTFS_SIZE_ALIGNED} \% $
 SDIMG_SIZE=$(expr ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED} \+ ${FAT_SPACE_ALIGNED} \+ ${ROOTFS_SIZE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT})
 
 SDIMG="atca-g400.img"
+
 rm -f ./${SDIMG}
 dd if=/dev/zero of=${SDIMG} bs=1K count=0 seek=${SDIMG_SIZE} 
 
 # Create partition table
 parted -s ${SDIMG} mklabel msdos
 
+# P1: Fat partition
 parted -s ${SDIMG} unit KiB mkpart primary fat32 $(expr  ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED}) $(expr ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED} \+ ${FAT_SPACE_ALIGNED})
 
 # set fat partition as bootable for distroboot
@@ -46,6 +56,26 @@ parted -s ${SDIMG} unit KiB mkpart primary ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BO
 # set part 3 to type a2 for spl / uboot image
 # 446 to partition table, 16 bytes per entry, 4 byte offset to partition type
 echo -ne "\xa2" | dd of=${SDIMG} bs=1 count=1 seek=$(expr 446 + 16 + 16 + 4) conv=notrunc && sync && sync
+
+
+
+### Create partition table
+##parted -s ${SDIMG} mklabel msdos
+##
+##parted -s ${SDIMG} unit KiB mkpart primary fat32 $(expr  ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED}) $(expr ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED} \+ ${FAT_SPACE_ALIGNED})
+##
+### set fat partition as bootable for distroboot
+##parted -s ${SDIMG} set 1 boot on
+##
+### P2: Linux FS partition
+##parted -s ${SDIMG} unit KiB mkpart primary $(expr ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED} \+ ${FAT_SPACE_ALIGNED}) $(expr ${IMAGE_ROOTFS_ALIGNMENT} \+ ${BOOT_SPACE_ALIGNED} \+ ${FAT_SPACE_ALIGNED} \+ ${ROOTFS_SIZE_ALIGNED})
+##
+### P3: A2 partition for bootloader
+##parted -s ${SDIMG} unit KiB mkpart primary ${IMAGE_ROOTFS_ALIGNMENT} $(expr ${BOOT_SPACE_ALIGNED} \+ ${IMAGE_ROOTFS_ALIGNMENT})
+##
+### set part 3 to type a2 for spl / uboot image
+### 446 to partition table, 16 bytes per entry, 4 byte offset to partition type
+##echo -ne "\xa2" | dd of=${SDIMG} bs=1 count=1 seek=$(expr 446 + 16 + 16 + 4) conv=notrunc && sync && sync
 
 # Create a vfat image with boot files
 FAT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
