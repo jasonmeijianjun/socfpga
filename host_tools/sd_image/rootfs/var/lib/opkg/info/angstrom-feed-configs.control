@@ -1,0 +1,12 @@
+Package: angstrom-feed-configs
+Version: v2016.12-r0.0
+Description: angstrom-feed-configs version v2016.12-r0
+ Configuration files for online package repositories aka feeds
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: angstrom-feed-configs
+Recommends: opkg
+Source: None

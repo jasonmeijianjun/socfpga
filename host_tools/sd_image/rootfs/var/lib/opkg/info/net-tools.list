@@ -1,0 +1,16 @@
+/sbin/arp.net-tools
+/bin/hostname.net-tools
+/sbin/iptunnel.net-tools
+/bin/domainname.net-tools
+/sbin/mii-tool.net-tools
+/sbin/ifconfig.net-tools
+/sbin/nameif.net-tools
+/sbin/ipmaddr.net-tools
+/bin/netstat.net-tools
+/bin/nisdomainname.net-tools
+/bin/ypdomainname.net-tools
+/sbin/slattach.net-tools
+/sbin/plipconfig.net-tools
+/bin/dnsdomainname.net-tools
+/sbin/route.net-tools
+/sbin/rarp.net-tools

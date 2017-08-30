@@ -1,0 +1,3 @@
+/sbin/route
+/bin/busybox.nosuid 50
+/sbin/route.net-tools 100

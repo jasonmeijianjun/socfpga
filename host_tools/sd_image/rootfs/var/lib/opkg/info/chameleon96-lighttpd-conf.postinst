@@ -1,0 +1,7 @@
+#!/bin/sh
+sed -ir 's:#\(.*mod_cgi\"\,\):\1:' $D/etc/lighttpd.conf
+# next line added by dw; otherwise same as altera-lighttpd-conf recipe; verify if needed for Chameleon96
+sed -i '/server.document-root/c server.document-root        = "/usr/share/chameleon96-webcontent"' $D/etc/lighttpd.conf
+sed -ir 's:\(index-file.names *\=\).*\(,\):\1 ("index.html"\2:' $D/etc/lighttpd.conf
+echo 'server.error-handler-404   = "/not_found.html"' >> $D/etc/lighttpd.conf
+echo 'cgi.assign = ( ".sh"  => "/bin/sh" )' >> $D/etc/lighttpd.conf

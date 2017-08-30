@@ -1,0 +1,16 @@
+Package: lighttpd
+Version: 1.4.41-r0.0
+Description: Lightweight high-performance web server
+ Lightweight high-performance web server.
+Section: net
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: BSD
+Architecture: armv7at2hf-neon
+OE: lighttpd
+Homepage: http://www.lighttpd.net/
+Depends: libc6 (>= 2.24), libcrypto1.0.0 (>= 1.0.2j), libpcre1 (>= 8.39), libssl1.0.0 (>= 1.0.2j), lighttpd-module-access, lighttpd-module-accesslog, lighttpd-module-dirlisting, lighttpd-module-indexfile, lighttpd-module-staticfile
+Provides: lighttpd-systemd
+Replaces: lighttpd-systemd
+Conflicts: lighttpd-systemd
+Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.41.tar.xz file://index.html.lighttpd file://lighttpd.conf file://lighttpd file://lighttpd.service file://0001-Use-pkg-config-for-pcre-dependency-instead-of-config.patch

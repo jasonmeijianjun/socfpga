@@ -1,0 +1,12 @@
+Package: kernel-module-g-hid
+Version: 4.1.33-ltsi+git0+b84195c056-r0.1
+Description: g-hid kernel module
+ g-hid kernel module; HID Gadget
+Section: kernel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2
+Architecture: chameleon96
+OE: linux-altera-ltsi
+Depends: kernel-4.1.33-ltsi-altera, kernel-module-libcomposite
+Source: git://github.com/altera-opensource/linux-socfpga.git;protocol=https;branch=socfpga-4.1.33-ltsi file://socfpga-4.1-ltsi/cfg/altvipfb.cfg file://socfpga-4.1-ltsi/cfg/block.cfg file://socfpga-4.1-ltsi/cfg/cma.cfg file://socfpga-4.1-ltsi/cfg/configfs.cfg file://socfpga-4.1-ltsi/cfg/gpio-keys.cfg file://socfpga-4.1-ltsi/cfg/led-triggers.cfg file://socfpga-4.1-ltsi/cfg/usb-gadget.cfg file://socfpga-4.1-ltsi/patches/0001-add-Chameleon96-devicetree.patch

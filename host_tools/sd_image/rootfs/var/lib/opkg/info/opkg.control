@@ -1,0 +1,16 @@
+Package: opkg
+Version: 1:0.3.3-r0.0
+Description: Open Package Manager
+ Open Package Manager.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2+
+Architecture: armv7at2hf-neon
+OE: opkg
+Homepage: http://code.google.com/p/opkg/
+Depends: libarchive, libc6 (>= 2.24), libopkg1 (>= 0.3.3), opkg-arch-config, run-postinsts, update-alternatives-opkg
+Provides: opkg-collateral
+Replaces: opkg-collateral, opkg-nogpg
+Conflicts: opkg-collateral
+Source: http://downloads.yoctoproject.org/releases/opkg/opkg-0.3.3.tar.gz file://opkg-configure.service file://opkg.conf file://0001-opkg_conf-create-opkg.lock-in-run-instead-of-var-run.patch

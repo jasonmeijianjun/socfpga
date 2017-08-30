@@ -1,0 +1,8 @@
+# This file is part of systemd.
+#
+# Used by systemd --user instances.
+
+account  include common-account
+
+session  required pam_loginuid.so
+session  include common-session

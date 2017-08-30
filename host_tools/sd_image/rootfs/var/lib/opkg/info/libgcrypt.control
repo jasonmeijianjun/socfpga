@@ -1,0 +1,13 @@
+Package: libgcrypt
+Version: 1.7.3-r0.0
+Description: General purpose cryptographic library based on the code from GnuPG
+ General purpose cryptographic library based on the code from GnuPG.
+Section: libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: LGPLv2.1+
+Architecture: armv7ahf-neon
+OE: libgcrypt
+Homepage: http://directory.fsf.org/project/libgcrypt/
+Depends: libc6 (>= 2.24), libcap2 (>= 2.25), libgpg-error0 (>= 1.24)
+Source: https://www.gnupg.org/ftp/gcrypt/libgcrypt/libgcrypt-1.7.3.tar.gz file://add-pkgconfig-support.patch file://libgcrypt-fix-building-error-with-O2-in-sysroot-path.patch file://fix-ICE-failure-on-mips-with-option-O-and-g.patch file://fix-undefined-reference-to-pthread.patch

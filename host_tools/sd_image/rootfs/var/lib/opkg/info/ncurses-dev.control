@@ -1,0 +1,20 @@
+Package: ncurses-dev
+Version: 6.0+20160625-r0.0
+Description: The New Curses library - Development files
+ SVr4 and XSI-Curses compatible curses library and terminfo tools
+ including tic, infocmp, captoinfo. Supports color, multiple highlights,
+ forms-drawing characters, and automatic recognition of keypad and
+ function-key sequences. Extensions include resizable windows and mouse
+ support on both xterm and Linux console using the gpm library.  This
+ package contains symbolic links, header files, and related items
+ necessary for software development.
+Section: devel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: armv7at2hf-neon
+OE: ncurses
+Homepage: http://www.gnu.org/software/ncurses/ncurses.html
+Depends: libform5, libformw5, libmenu5, libmenuw5, libpanel5, libpanelw5, libtic5, libticw5, libtinfo5, ncurses (= 6.0+20160625-r0.0)
+Recommends: libc6-dev, ncurses-libform-dev, ncurses-libformw-dev, ncurses-libmenu-dev, ncurses-libmenuw-dev, ncurses-libncurses-dev, ncurses-libncursesw-dev, ncurses-libpanel-dev, ncurses-libpanelw-dev, ncurses-libtic-dev, ncurses-libticw-dev, ncurses-libtinfo-dev, ncurses-terminfo-base-dev, update-alternatives-opkg-dev
+Source: git://anonscm.debian.org/collab-maint/ncurses.git file://tic-hang.patch file://config.cache

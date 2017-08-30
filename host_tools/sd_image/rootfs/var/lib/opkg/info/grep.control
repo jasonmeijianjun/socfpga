@@ -1,0 +1,13 @@
+Package: grep
+Version: 2.25-r0.0
+Description: GNU grep utility
+ GNU grep utility.
+Section: console/utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3
+Architecture: armv7at2hf-neon
+OE: grep
+Homepage: http://savannah.gnu.org/projects/grep/
+Depends: libc6 (>= 2.24), update-alternatives-opkg
+Source: http://ftp.gnu.org/gnu/grep/grep-2.25.tar.xz file://0001-Unset-need_charset_alias-when-building-for-musl.patch

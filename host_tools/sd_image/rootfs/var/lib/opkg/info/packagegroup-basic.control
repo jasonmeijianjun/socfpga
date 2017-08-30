@@ -1,0 +1,13 @@
+Package: packagegroup-basic
+Version: 1.0-r13.0
+Description: Basic task to get a device online
+ Basic task to get a device online.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: packagegroup-basic
+Depends: avahi-daemon, avahi-utils, openssh-scp, openssh-sftp, openssh-sftp-server, openssh-ssh, openssh-sshd
+Recommends: bluez5, cpufrequtils, htop, iw, kernel-modules, tzdata, wpa-supplicant
+Source: None

@@ -1,0 +1,18 @@
+Package: libxml2
+Version: 2.9.4-r0.0
+Description: XML C Parser Library and Toolkit
+ The XML Parser Library allows for manipulation of XML files.  Libxml2
+ exports Push and Pull type parser interfaces for both XML and HTML.  It
+ can do DTD validation at parse time, on a parsed document instance or
+ with an arbitrary DTD.  Libxml2 includes complete XPath, XPointer and
+ Xinclude implementations.  It also has a SAX like interface, which is
+ designed to be compatible with Expat.
+Section: libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: armv7at2hf-neon
+OE: libxml2
+Homepage: http://www.xmlsoft.org/
+Depends: libc6 (>= 2.24), libgcc1 (>= linaro-6.2), libz1 (>= 1.2.8)
+Source: ftp://xmlsoft.org/libxml2/libxml2-2.9.4.tar.gz;name=libtar http://www.w3.org/XML/Test/xmlts20080827.tar.gz;name=testtar file://libxml-64bit.patch file://ansidecl.patch file://runtest.patch file://run-ptest file://python-sitepackages-dir.patch file://libxml-m4-use-pkgconfig.patch file://libxml2-fix_node_comparison.patch file://libxml2-CVE-2016-5131.patch file://libxml2-CVE-2016-4658.patch file://libxml2-fix_NULL_pointer_derefs.patch file://CVE-2016-9318.patch

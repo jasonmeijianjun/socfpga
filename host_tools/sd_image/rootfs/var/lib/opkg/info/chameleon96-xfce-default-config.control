@@ -1,0 +1,11 @@
+Package: chameleon96-xfce-default-config
+Version: 1.0-r4.0
+Description: chameleon96-xfce-default-config version 1.0-r4
+ This recipe presets xfce user default configuration
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: all
+OE: chameleon96-xfce-default-config
+Source: file://.config file://xfce-chameleon.jpg

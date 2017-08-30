@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --install /usr/bin/awk awk /usr/bin/gawk 100
+# End section update-alternatives

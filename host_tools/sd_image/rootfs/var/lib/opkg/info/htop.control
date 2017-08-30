@@ -1,0 +1,13 @@
+Package: htop
+Version: 1.0.3-r0.0
+Description: htop process monitor
+ htop process monitor.
+Section: console/utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv2
+Architecture: armv7at2hf-neon
+OE: htop
+Homepage: http://htop.sf.net
+Depends: libc6 (>= 2.24), libncursesw5 (>= 6.0+20160625), libtinfo5 (>= 6.0+20160625), ncurses-terminfo
+Source: http://hisham.hm/htop/releases/1.0.3/htop-1.0.3.tar.gz

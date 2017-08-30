@@ -1,0 +1,13 @@
+Package: libevent
+Version: 2.0.22-r0.0
+Description: An asynchronous event notification library
+ An asynchronous event notification library.
+Section: libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: BSD
+Architecture: armv7at2hf-neon
+OE: libevent
+Homepage: http://libevent.org/
+Depends: libc6 (>= 2.24)
+Source: http://downloads.sourceforge.net/levent/libevent-2.0.22-stable.tar.gz file://run-ptest

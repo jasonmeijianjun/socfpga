@@ -1,0 +1,14 @@
+Package: libdaemon0
+Version: 0.14-r0.0
+Description: Lightweight C library which eases the writing of UNIX daemons
+ Lightweight C library which eases the writing of UNIX daemons.
+Section: libs
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: LGPLv2.1+
+Architecture: armv7at2hf-neon
+OE: libdaemon
+Homepage: http://0pointer.de/lennart/projects/libdaemon/
+Depends: libc6 (>= 2.24)
+Provides: libdaemon
+Source: http://0pointer.de/lennart/projects/libdaemon/libdaemon-0.14.tar.gz file://fix-includes.patch

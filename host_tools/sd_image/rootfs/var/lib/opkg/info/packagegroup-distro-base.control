@@ -1,0 +1,13 @@
+Package: packagegroup-distro-base
+Version: 1.0-r83.0
+Description: angstrom extras
+ Merge machine and distro options to create a basic machine task/package.
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: packagegroup-base
+Depends: angstrom-feed-configs, angstrom-libc-fixup-hack, angstrom-version, util-linux-mount, util-linux-umount
+Recommends: avahi-autoipd, avahi-daemon, kernel-module-af-packet, kernel-module-ext2, kernel-module-ext3, kernel-module-vfat, openssh-sftp-server, procps, strace
+Source: None

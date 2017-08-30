@@ -1,0 +1,13 @@
+Package: sed
+Version: 4.2.2-r0.0
+Description: Stream EDitor (text filtering utility)
+ Stream EDitor (text filtering utility).
+Section: console/utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3+
+Architecture: armv7at2hf-neon
+OE: sed
+Homepage: http://www.gnu.org/software/sed/
+Depends: libc6 (>= 2.24), update-alternatives-opkg
+Source: http://ftp.gnu.org/gnu/sed/sed-4.2.2.tar.gz file://sed-add-ptest.patch file://0001-Unset-need_charset_alias-when-building-for-musl.patch file://run-ptest

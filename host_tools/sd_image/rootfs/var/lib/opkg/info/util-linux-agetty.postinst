@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --install /sbin/getty getty /sbin/agetty 80
+# End section update-alternatives

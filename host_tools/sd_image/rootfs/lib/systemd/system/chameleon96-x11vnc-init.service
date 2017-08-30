@@ -1,0 +1,9 @@
+[Unit]
+Description=Chameleon96 X11VNC Server
+Documentation=man:x11vnc
+
+[Service]
+ExecStart=/usr/bin/chameleon96-x11vnc-init.sh
+
+[Install]
+WantedBy=multi-user.target

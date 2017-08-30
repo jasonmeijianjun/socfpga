@@ -1,0 +1,11 @@
+Package: chameleon96-x11vnc-init
+Version: 1.0-r0.0
+Description: Chameleon96 X11VNC Startup
+ Chameleon96 scripts to start x11vnc
+Section: chameleon96
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: chameleon96
+OE: chameleon96-x11vnc-init
+Source: file://chameleon96-x11vnc-init.service file://chameleon96-x11vnc-init.sh

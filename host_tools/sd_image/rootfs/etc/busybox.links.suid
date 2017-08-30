@@ -1,0 +1,8 @@
+/bin/ping
+/bin/ping6
+/bin/login
+/bin/mount
+/usr/bin/passwd
+/bin/su
+/usr/bin/traceroute
+/usr/bin/vlock

@@ -1,0 +1,11 @@
+Package: volatile-binds
+Version: 1.0-r0.0
+Description: Volatile bind mount setup and configuration for read-only-rootfs
+ Volatile bind mount setup and configuration for read-only-rootfs
+Section: base
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT
+Architecture: all
+OE: volatile-binds
+Source: file://mount-copybind file://COPYING.MIT file://volatile-binds.service.in

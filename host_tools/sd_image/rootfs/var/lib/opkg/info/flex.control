@@ -1,0 +1,14 @@
+Package: flex
+Version: 2.6.0-r0.0
+Description: Flex (The Fast Lexical Analyzer)
+ Flex is a fast lexical analyser generator.  Flex is a tool for generating
+ programs that recognize lexical patterns in text.
+Section: devel
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: BSD
+Architecture: armv7at2hf-neon
+OE: flex
+Homepage: http://sourceforge.net/projects/flex/
+Depends: libc6 (>= 2.24), m4
+Source: http://downloads.sourceforge.net/flex/flex-2.6.0.tar.bz2 file://run-ptest file://do_not_create_pdf_doc.patch file://0001-tests-add-a-target-for-building-tests-without-runnin.patch file://0002-avoid-c-comments-in-c-code-fails-with-gcc-6.patch file://CVE-2016-6354.patch file://disable-tests.patch

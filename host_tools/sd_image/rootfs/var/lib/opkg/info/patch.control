@@ -1,0 +1,15 @@
+Package: patch
+Version: 2.7.5-r0.0
+Description: Tool for applying a patch file
+ patch takes a patch file containing a difference listing produced by the
+ diff program and applies those differences to one or more original files,
+ producing patched versions.
+Section: utils
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3
+Architecture: armv7at2hf-neon
+OE: patch
+Homepage: http://savannah.gnu.org/projects/patch/
+Depends: libattr1 (>= 2.4.47), libc6 (>= 2.24), update-alternatives-opkg
+Source: http://ftp.gnu.org/gnu/patch/patch-2.7.5.tar.gz file://0001-Unset-need_charset_alias-when-building-for-musl.patch

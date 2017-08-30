@@ -1,0 +1,4 @@
+#!/bin/sh
+# Begin section update-alternatives
+update-alternatives --remove  umount /bin/umount.util-linux
+# End section update-alternatives

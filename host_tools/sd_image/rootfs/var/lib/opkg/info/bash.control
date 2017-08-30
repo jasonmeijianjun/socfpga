@@ -1,0 +1,13 @@
+Package: bash
+Version: 4.3.30-r0.0
+Description: An sh-compatible command language interpreter
+ An sh-compatible command language interpreter.
+Section: base/shell
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: GPLv3+
+Architecture: armv7at2hf-neon
+OE: bash
+Homepage: http://tiswww.case.edu/php/chet/bash/bashtop.html
+Depends: base-files, libc6 (>= 2.24), libtinfo5 (>= 6.0+20160625), update-alternatives-opkg
+Source: http://ftp.gnu.org/gnu/bash/bash-4.3.30.tar.gz;name=tarball http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-031;apply=yes;striplevel=0;name=patch031 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-032;apply=yes;striplevel=0;name=patch032 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-033;apply=yes;striplevel=0;name=patch033 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-034;apply=yes;striplevel=0;name=patch034 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-035;apply=yes;striplevel=0;name=patch035 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-036;apply=yes;striplevel=0;name=patch036 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-037;apply=yes;striplevel=0;name=patch037 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-038;apply=yes;striplevel=0;name=patch038 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-039;apply=yes;striplevel=0;name=patch039 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-040;apply=yes;striplevel=0;name=patch040 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-041;apply=yes;striplevel=0;name=patch041 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-042;apply=yes;striplevel=0;name=patch042 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-043;apply=yes;striplevel=0;name=patch043 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-044;apply=yes;striplevel=0;name=patch044 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-045;apply=yes;striplevel=0;name=patch045 http://ftp.gnu.org/gnu/bash/bash-4.3-patches/bash43-046;apply=yes;striplevel=0;name=patch046 file://execute_cmd.patch;striplevel=0 file://mkbuiltins_have_stringize.patch file://build-tests.patch file://test-output.patch file://fix-run-coproc-run-heredoc-run-execscript-run-test-f.patch file://run-ptest file://fix-run-builtins.patch file://0001-help-fix-printf-format-security-warning.patch file://fix-run-intl.patch file://CVE-2016-9401.patch

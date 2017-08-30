@@ -1,0 +1,13 @@
+Package: lighttpd-module-access
+Version: 1.4.41-r0.0
+Description: Lighttpd module for access
+ Lighttpd module for access
+Section: net
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: BSD
+Architecture: armv7at2hf-neon
+OE: lighttpd
+Homepage: http://www.lighttpd.net/
+Depends: libc6 (>= 2.24)
+Source: http://download.lighttpd.net/lighttpd/releases-1.4.x/lighttpd-1.4.41.tar.xz file://index.html.lighttpd file://lighttpd.conf file://lighttpd file://lighttpd.service file://0001-Use-pkg-config-for-pcre-dependency-instead-of-config.patch

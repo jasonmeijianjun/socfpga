@@ -1,0 +1,11 @@
+Package: chameleon96-webcontent
+Version: 1.0r1+git0+c6b52896eb-r1.0
+Description: chameleon96-webcontent version 1.0r1+gitAUTOINC+c6b52896eb-r1
+ Chameleon96 Board Web Content
+Section: chameleon96
+Priority: optional
+Maintainer: Angstrom Developers <angstrom-distro-devel@linuxtogo.org>
+License: MIT & LGPLv3
+Architecture: all
+OE: chameleon96-webcontent
+Source: git://github.com/JustCraig/chameleon96-webcontent.git
