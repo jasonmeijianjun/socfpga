@@ -1,6 +1,6 @@
 #!/bin/bash
 # Boot partition volume id
-BOOTDD_VOLUME_ID="chameleon96"
+BOOTDD_VOLUME_ID="CHAMELEON96"
 
 # Boot partition size [in KiB] -> size 2M for A10
 BOOT_SPACE="2048"
