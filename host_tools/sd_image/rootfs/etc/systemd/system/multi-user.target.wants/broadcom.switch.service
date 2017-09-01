@@ -1,0 +1,23 @@
+[Unit]
+Description=Start Broadcom switch.
+
+[Service]
+
+ExecStart=/bin/mknod /dev/linux-bcm-net c 123 0
+ExecStart=/bin/mknod /dev/linux-bcm-diag c 124 0
+ExecStart=/bin/ln -sf /dev/linux-bcm-diag /dev/linux-bcm-diag-full
+ExecStart=/bin/mknod /dev/linux-uk-proxy c 125 0
+ExecStart=/bin/mknod /dev/linux-bcm-core c 126 0
+ExecStart=/bin/mknod /dev/linux-kernel-bde c 127 0
+ExecStart=/bin/ln -sf  /dev/linux-bcm-core  /dev/linux-user-bde
+ExecStart=/sbin/insmod /opt/bcmsdk/linux-kernel-bde.ko
+ExecStart=/sbin/insmod /opt/bcmsdk/linux-user-bde.ko
+#insmod ./linux-bcm-core.ko
+#insmod ./linux-bcm-diag-full.ko
+#insmod ./linux-bcm-diag.ko
+#insmod ./linux-bcm-net.ko
+#insmod ./linux-uk-proxy.ko
+
+ExecStart=/opt/bcmsdk/bcm.user
+#ExecStart=cd /opt/bcmsdk;/opt/bcmsdk/lu.sh
+Type=oneshot
