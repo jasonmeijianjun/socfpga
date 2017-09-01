@@ -1,9 +1,20 @@
 #!/bin/bash
 #1.export toolchain
-export CORECOUNT=$(shell cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)
-export ARCH=arm
-export CROSS_COMPILE=${PWD}/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
-export WORKSPACE=${PWD}
+#export CORECOUNT=$(shell cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)
+#export ARCH=arm
+#export CROSS_COMPILE=${PWD}/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
+#export WORKSPACE=${PWD}
+
+CORECOUNT=$(shell cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)
+ARCH=arm
+WORKSPACE=${PWD}
+CROSS_COMPILE=${WORKSPACE}/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
+
+export ARCH CORECOUNT CROSS_COMPILE WORKSPACE
+
+#1. default target is make all 
+all:sd_image
+.PHONY: all
 
 #2.make proloader
 preloader:
@@ -21,7 +32,7 @@ uboot:
 #4. make kernel
 kernel:
 	make atca-g400_defconfig -C linux-socfpga.git
-	make zImage -j4 -C linux-socfpga.git -j$(CORECOUNT)
+	make zImage -C linux-socfpga.git -j$(CORECOUNT)
 	make dtbs -C linux-socfpga.git
 
 #5.make flash tools. atca has 2 seperate flash controlled by fpga
@@ -32,9 +43,9 @@ bcmsdk: kernel
 	make -C sdk-all-6.5.7/systems/linux/user/cyconevsoc-4_1 -j$(CORECOUNT)
 #6.cp zImage,u-boot.scr,soc_system.rbf,socfpga.dtb
 
-sd_image:preloader uboot kernel flashtools bcmsdk
-	cp -rf linux-socfpga.git/arch/arm/boot/zImage ./host_tools/sd_image/kernel/
-	cp -rf linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb  ./host_tools/sd_image/kernel/socfpga_cyclone5_chameleon96.dtb
+sd_image:preloader uboot kernel tools bcmsdk
+	cp -f linux-socfpga.git/arch/arm/boot/zImage ./host_tools/sd_image/kernel/
+	cp -f linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb  ./host_tools/sd_image/kernel/socfpga_cyclone5_chameleon96.dtb
 	cp -f flashtools/flash_read host_tools/sd_image/rootfs/usr/bin/
 	cp -f flashtools/flash_write host_tools/sd_image/rootfs/usr/bin/
 	rm -rf host_tools/sd_image/rootfs/opt/bcmsdk
@@ -42,10 +53,8 @@ sd_image:preloader uboot kernel flashtools bcmsdk
 	mkdir -p host_tools/sd_image/rootfs/opt/bcmsdk
 	cp -rf sdk-all-6.5.7/rc/* host_tools/sd_image/rootfs/opt/bcmsdk
 	cp -rf sdk-all-6.5.7/build/linux/user/cyconevsoc-4_1/* host_tools/sd_image/rootfs/opt/bcmsdk
-	cd ./host_tools/sd_image;echo y | ./makeimage.sh
+	cd ./host_tools/sd_image;echo y | sudo ./makeimage.sh
 	
-all:sd_image
-.PHONY: all
 
 clean:
 	make clean -C cv_soc_devkit_ghrd/software/spl_bsp
