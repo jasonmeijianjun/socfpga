@@ -4,7 +4,7 @@
 int main()
 {
 	int i,j;
-	long size;
+	int size;
 	FILE * infile, *outfile_odd,* outfile_even;
 	char * inbuf, * outbuf_odd,* outbuf_even; 	
 

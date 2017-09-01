@@ -1,7 +1,7 @@
 #!/bin/bash
 #1.export toolchain
 export ARCH=arm
-export CROSS_COMPILE=`pwd`/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
+export CROSS_COMPILE=${PWD}/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
 
 #2.make proloader
 cd ./cv_soc_devkit_ghrd/software/spl_bsp
@@ -27,11 +27,17 @@ make zImage -j4
 make dtbs
 cd -
 
-#cp zImage,u-boot.scr,soc_system.rbf,socfpga.dtb
+#5.make flash tools. atca has 2 seperate flash controlled by fpga
+cd flashtools
+make
+cd -
+
+#6.cp zImage,u-boot.scr,soc_system.rbf,socfpga.dtb
 rm -f ./host_tools/sd_image/zImage
 rm -f ./host_tools/sd_image/socfpga.dtb
 cp linux-socfpga.git/arch/arm/boot/zImage ./host_tools/sd_image/kernel/
 cp linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb  ./host_tools/sd_image/kernel/socfpga_cyclone5_chameleon96.dtb
-cd ./host_tools/sd_image
+cp -f flashtools/{flash_read;flash_write} host_tools/sd_image/rootfs/usr/bin/
 
-source makeimage.sh
+cd ./host_tools/sd_image
+./makeimage.sh
