@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --remove  mount /bin/mount.util-linux
-# End section update-alternatives

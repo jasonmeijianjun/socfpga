@@ -1,9 +1,0 @@
-[Unit]
-Description=FPGA Initialization
-
-[Service]
-Type=simple
-ExecStart=/usr/bin/chameleon96-fpga-init.sh
-
-[Install]
-WantedBy=basic.target

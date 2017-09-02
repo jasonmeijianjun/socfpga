@@ -1,7 +1,0 @@
-/usr/sbin/i2cget
-/usr/sbin/eeprog
-/usr/sbin/eeprom
-/usr/sbin/i2cdump
-/usr/sbin/i2cdetect
-/usr/sbin/eepromer
-/usr/sbin/i2cset

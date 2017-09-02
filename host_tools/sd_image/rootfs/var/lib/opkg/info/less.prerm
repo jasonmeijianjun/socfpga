@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --remove  less /usr/bin/less.less
-# End section update-alternatives

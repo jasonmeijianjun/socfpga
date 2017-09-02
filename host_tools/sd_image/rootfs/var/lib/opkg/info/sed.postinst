@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --install /bin/sed sed /bin/sed.sed 100
-# End section update-alternatives

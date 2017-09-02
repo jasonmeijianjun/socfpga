@@ -1,5 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --remove  diff /usr/bin/diff.diffutils
-update-alternatives --remove  cmp /usr/bin/cmp.diffutils
-# End section update-alternatives

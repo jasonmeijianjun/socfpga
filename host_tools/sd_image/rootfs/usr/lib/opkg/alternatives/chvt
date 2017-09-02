@@ -1,3 +1,0 @@
-/usr/bin/chvt
-/bin/busybox.nosuid 50
-/usr/bin/chvt.kbd 100

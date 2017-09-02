@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --install /bin/tar tar /bin/tar.tar 100
-# End section update-alternatives

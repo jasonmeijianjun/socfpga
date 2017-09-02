@@ -1,2 +1,0 @@
-#!/bin/sh
-update-alternatives --remove zImage zImage-4.1.33-ltsi-altera || true

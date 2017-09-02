@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --remove  tar /bin/tar.tar
-# End section update-alternatives

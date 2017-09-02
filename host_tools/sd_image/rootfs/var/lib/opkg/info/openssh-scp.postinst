@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --install /usr/bin/scp scp /usr/bin/scp.openssh 90
-# End section update-alternatives

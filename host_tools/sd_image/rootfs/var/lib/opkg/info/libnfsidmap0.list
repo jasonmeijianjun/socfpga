@@ -1,6 +1,0 @@
-/etc/idmapd.conf
-/usr/lib/libnfsidmap.so.0
-/usr/lib/libnfsidmap/static.so
-/usr/lib/libnfsidmap/
-/usr/lib/libnfsidmap.so.0.3.0
-/usr/lib/libnfsidmap/nsswitch.so

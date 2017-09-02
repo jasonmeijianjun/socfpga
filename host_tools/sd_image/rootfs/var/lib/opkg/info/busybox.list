@@ -1,6 +1,0 @@
-/bin/sh
-/bin/busybox.suid
-/bin/busybox
-/etc/busybox.links.nosuid
-/etc/busybox.links.suid
-/bin/busybox.nosuid

@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --install /usr/bin/ssh ssh /usr/bin/ssh.openssh 90
-# End section update-alternatives

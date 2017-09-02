@@ -1,6 +1,0 @@
-/etc/pam.d/common-session
-/etc/pam.d/common-auth
-/etc/pam.d/common-password
-/etc/pam.d/common-session-noninteractive
-/etc/pam.d/common-account
-/etc/security/limits.conf

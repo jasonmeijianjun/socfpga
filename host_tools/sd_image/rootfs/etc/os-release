@@ -1,6 +1,0 @@
-VERSION_ID="v2016.12"
-NAME="Angstrom"
-ID="angstrom"
-PRETTY_NAME="The Ångström Distribution v2016.12"
-ANSI_COLOR="1;35"
-HOME_URL="http://www.angstrom-distribution.org"

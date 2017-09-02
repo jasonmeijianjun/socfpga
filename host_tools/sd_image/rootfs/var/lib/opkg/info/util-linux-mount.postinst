@@ -1,4 +1,0 @@
-#!/bin/sh
-# Begin section update-alternatives
-update-alternatives --install /bin/mount mount /bin/mount.util-linux 80
-# End section update-alternatives
