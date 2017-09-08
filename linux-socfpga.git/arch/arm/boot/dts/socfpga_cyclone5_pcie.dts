@@ -15,7 +15,7 @@
 	#size-cells = <1>;
 
 	aliases {
-		ethernet0 =&hps_0_gmac0;
+		ethernet0 =&hps_0_gmac1;
 		serial0 = &hps_0_uart0;
 	}; //end aliases
 
@@ -864,20 +864,20 @@
 			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
 		}; //end i2c@0xffc07000 (hps_0_i2c3)
 
-		hps_0_nand0: flash@0xff900000 {
-			compatible = "denali,nand-15.0", "denali,denali-nand-dt";
-			reg = <0xff900000 0x00010000>,
-				<0xffb80000 0x00010000>;
-			reg-names = "nand_data", "denali_reg";	/* embeddedsw.dts.params.reg-names type STRING */
-			interrupt-parent = <&hps_0_arm_gic_0>;
-			interrupts = <0 144 4>;
-			clocks = <&nand_clk>;
-			#address-cells = <1>;	/* embeddedsw.dts.params.#address-cells type NUMBER */
-			#size-cells = <1>;	/* embeddedsw.dts.params.#size-cells type NUMBER */
-			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
-			bank-width = <2>;
-			device-width = <1>;
-		}; //end flash@0xff900000 (hps_0_nand0)
+//		hps_0_nand0: flash@0xff900000 {
+//			compatible = "denali,nand-15.0", "denali,denali-nand-dt";
+//			reg = <0xff900000 0x00010000>,
+//				<0xffb80000 0x00010000>;
+//			reg-names = "nand_data", "denali_reg";	/* embeddedsw.dts.params.reg-names type STRING */
+//			interrupt-parent = <&hps_0_arm_gic_0>;
+//			interrupts = <0 144 4>;
+//			clocks = <&nand_clk>;
+//			#address-cells = <1>;	/* embeddedsw.dts.params.#address-cells type NUMBER */
+//			#size-cells = <1>;	/* embeddedsw.dts.params.#size-cells type NUMBER */
+//			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
+//			bank-width = <2>;
+//			device-width = <1>;
+//		}; //end flash@0xff900000 (hps_0_nand0)
 
 		hps_0_spim0: spi@0xfff00000 {
 			compatible = "snps,dw-spi-mmio-15.0", "snps,dw-spi-mmio";
@@ -1041,50 +1041,50 @@
 			}; //end slot@0 (slot_0)
 		}; //end flash@0xff704000 (hps_0_sdmmc)
 
-		hps_0_usb0: usb@0xffb00000 {
-			compatible = "snps,dwc-otg-15.0", "snps,dwc-otg", "snps,dwc2";
-			reg = <0xffb00000 0x00040000>;
-			interrupt-parent = <&hps_0_arm_gic_0>;
-			interrupts = <0 125 4>;
-			clocks = <&usb_mp_clk>;
-			clock-names = "otg";	/* embeddedsw.dts.params.clock-names type STRING */
-			dev-nperio-tx-fifo-size = <4096>;	/* embeddedsw.dts.params.dev-nperio-tx-fifo-size type NUMBER */
-			dev-perio-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-perio-tx-fifo-size type STRING */
-			dev-rx-fifo-size = <512>;	/* embeddedsw.dts.params.dev-rx-fifo-size type NUMBER */
-			dev-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-tx-fifo-size type STRING */
-			dma-mask = <268435455>;	/* embeddedsw.dts.params.dma-mask type NUMBER */
-			enable-dynamic-fifo = <1>;	/* embeddedsw.dts.params.enable-dynamic-fifo type NUMBER */
-			host-nperio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-nperio-tx-fifo-size type NUMBER */
-			host-perio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-perio-tx-fifo-size type NUMBER */
-			host-rx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-rx-fifo-size type NUMBER */
-			phy-names = "usb2-phy";	/* embeddedsw.dts.params.phy-names type STRING */
-			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
-			ulpi-ddr = <0>;	/* embeddedsw.dts.params.ulpi-ddr type NUMBER */
-			voltage-switch = <0>;	/* embeddedsw.dts.params.voltage-switch type NUMBER */
-		}; //end usb@0xffb00000 (hps_0_usb0)
-
-		hps_0_usb1: usb@0xffb40000 {
-			compatible = "snps,dwc-otg-15.0", "snps,dwc-otg", "snps,dwc2";
-			reg = <0xffb40000 0x00040000>;
-			interrupt-parent = <&hps_0_arm_gic_0>;
-			interrupts = <0 128 4>;
-			clocks = <&usb_mp_clk>;
-			clock-names = "otg";	/* embeddedsw.dts.params.clock-names type STRING */
-			dev-nperio-tx-fifo-size = <4096>;	/* embeddedsw.dts.params.dev-nperio-tx-fifo-size type NUMBER */
-			dev-perio-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-perio-tx-fifo-size type STRING */
-			dev-rx-fifo-size = <512>;	/* embeddedsw.dts.params.dev-rx-fifo-size type NUMBER */
-			dev-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-tx-fifo-size type STRING */
-			dma-mask = <268435455>;	/* embeddedsw.dts.params.dma-mask type NUMBER */
-			enable-dynamic-fifo = <1>;	/* embeddedsw.dts.params.enable-dynamic-fifo type NUMBER */
-			host-nperio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-nperio-tx-fifo-size type NUMBER */
-			host-perio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-perio-tx-fifo-size type NUMBER */
-			host-rx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-rx-fifo-size type NUMBER */
-			phy-names = "usb2-phy";	/* embeddedsw.dts.params.phy-names type STRING */
-			status = "disable";	/* embeddedsw.dts.params.status type STRING */
-			ulpi-ddr = <0>;	/* embeddedsw.dts.params.ulpi-ddr type NUMBER */
-			voltage-switch = <0>;	/* embeddedsw.dts.params.voltage-switch type NUMBER */
-			phys = <&usbphy0>;	/* appended from boardinfo */
-		}; //end usb@0xffb40000 (hps_0_usb1)
+//		hps_0_usb0: usb@0xffb00000 {
+//			compatible = "snps,dwc-otg-15.0", "snps,dwc-otg", "snps,dwc2";
+//			reg = <0xffb00000 0x00040000>;
+//			interrupt-parent = <&hps_0_arm_gic_0>;
+//			interrupts = <0 125 4>;
+//			clocks = <&usb_mp_clk>;
+//			clock-names = "otg";	/* embeddedsw.dts.params.clock-names type STRING */
+//			dev-nperio-tx-fifo-size = <4096>;	/* embeddedsw.dts.params.dev-nperio-tx-fifo-size type NUMBER */
+//			dev-perio-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-perio-tx-fifo-size type STRING */
+//			dev-rx-fifo-size = <512>;	/* embeddedsw.dts.params.dev-rx-fifo-size type NUMBER */
+//			dev-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-tx-fifo-size type STRING */
+//			dma-mask = <268435455>;	/* embeddedsw.dts.params.dma-mask type NUMBER */
+//			enable-dynamic-fifo = <1>;	/* embeddedsw.dts.params.enable-dynamic-fifo type NUMBER */
+//			host-nperio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-nperio-tx-fifo-size type NUMBER */
+//			host-perio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-perio-tx-fifo-size type NUMBER */
+//			host-rx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-rx-fifo-size type NUMBER */
+//			phy-names = "usb2-phy";	/* embeddedsw.dts.params.phy-names type STRING */
+//			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
+//			ulpi-ddr = <0>;	/* embeddedsw.dts.params.ulpi-ddr type NUMBER */
+//			voltage-switch = <0>;	/* embeddedsw.dts.params.voltage-switch type NUMBER */
+//		}; //end usb@0xffb00000 (hps_0_usb0)
+//
+//		hps_0_usb1: usb@0xffb40000 {
+//			compatible = "snps,dwc-otg-15.0", "snps,dwc-otg", "snps,dwc2";
+//			reg = <0xffb40000 0x00040000>;
+//			interrupt-parent = <&hps_0_arm_gic_0>;
+//			interrupts = <0 128 4>;
+//			clocks = <&usb_mp_clk>;
+//			clock-names = "otg";	/* embeddedsw.dts.params.clock-names type STRING */
+//			dev-nperio-tx-fifo-size = <4096>;	/* embeddedsw.dts.params.dev-nperio-tx-fifo-size type NUMBER */
+//			dev-perio-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-perio-tx-fifo-size type STRING */
+//			dev-rx-fifo-size = <512>;	/* embeddedsw.dts.params.dev-rx-fifo-size type NUMBER */
+//			dev-tx-fifo-size = "<512 512 512 512 512 512 512 512 512 512 512 512 512 512 512>";	/* embeddedsw.dts.params.dev-tx-fifo-size type STRING */
+//			dma-mask = <268435455>;	/* embeddedsw.dts.params.dma-mask type NUMBER */
+//			enable-dynamic-fifo = <1>;	/* embeddedsw.dts.params.enable-dynamic-fifo type NUMBER */
+//			host-nperio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-nperio-tx-fifo-size type NUMBER */
+//			host-perio-tx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-perio-tx-fifo-size type NUMBER */
+//			host-rx-fifo-size = <2560>;	/* embeddedsw.dts.params.host-rx-fifo-size type NUMBER */
+//			phy-names = "usb2-phy";	/* embeddedsw.dts.params.phy-names type STRING */
+//			status = "disable";	/* embeddedsw.dts.params.status type STRING */
+//			ulpi-ddr = <0>;	/* embeddedsw.dts.params.ulpi-ddr type NUMBER */
+//			voltage-switch = <0>;	/* embeddedsw.dts.params.voltage-switch type NUMBER */
+//			phys = <&usbphy0>;	/* appended from boardinfo */
+//		}; //end usb@0xffb40000 (hps_0_usb1)
 
 		hps_0_gmac0: ethernet@0xff700000 {
 			compatible = "synopsys,dwmac-15.0", "altr,socfpga-stmmac", "snps,dwmac-3.70a", "snps,dwmac";
@@ -1097,7 +1097,7 @@
 			mac-address = "[00 00 00 00 00 00]";	/* embeddedsw.dts.params.mac-address type STRING */
 			snps,multicast-filter-bins = <256>;	/* embeddedsw.dts.params.snps,multicast-filter-bins type NUMBER */
 			snps,perfect-filter-entries = <128>;	/* embeddedsw.dts.params.snps,perfect-filter-entries type NUMBER */
-			status = "disable";	/* embeddedsw.dts.params.status type STRING */
+			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
 			address-bits = <48>;
 			max-frame-size = <1518>;
 			local-mac-address = [00 00 00 00 00 00];
@@ -1142,7 +1142,7 @@
 			mac-address = "[00 00 00 00 00 00]";	/* embeddedsw.dts.params.mac-address type STRING */
 			snps,multicast-filter-bins = <256>;	/* embeddedsw.dts.params.snps,multicast-filter-bins type NUMBER */
 			snps,perfect-filter-entries = <128>;	/* embeddedsw.dts.params.snps,perfect-filter-entries type NUMBER */
-			status = "okay";	/* embeddedsw.dts.params.status type STRING */
+			status = "okay";	/* "disabled" embeddedsw.dts.params.status type STRING */
 			address-bits = <48>;
 			max-frame-size = <3800>;	/* appended from boardinfo */
 			local-mac-address = [00 00 00 00 00 00];
@@ -1166,25 +1166,25 @@
 			resets = <&hps_0_rstmgr EMAC1_RESET>;	/* appended from boardinfo */
 		}; //end ethernet@0xff702000 (hps_0_gmac1)
 
-		hps_0_dcan0: can@0xffc00000 {
-			compatible = "bosch,dcan-15.0", "bosch,d_can";
-			reg = <0xffc00000 0x00001000>;
-			interrupt-parent = <&hps_0_arm_gic_0>;
-			interrupts = <0 131 4 0 132 4>;
-			interrupt-names = "interrupt_sender0", "interrupt_sender1";
-			clocks = <&can0_clk>;
-			status = "okay";	/* embeddedsw.dts.params.status type STRING */
-		}; //end can@0xffc00000 (hps_0_dcan0)
-
-		hps_0_dcan1: can@0xffc01000 {
-			compatible = "bosch,dcan-15.0", "bosch,d_can";
-			reg = <0xffc01000 0x00001000>;
-			interrupt-parent = <&hps_0_arm_gic_0>;
-			interrupts = <0 135 4 0 136 4>;
-			interrupt-names = "interrupt_sender0", "interrupt_sender1";
-			clocks = <&can1_clk>;
-			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
-		}; //end can@0xffc01000 (hps_0_dcan1)
+//		hps_0_dcan0: can@0xffc00000 {
+//			compatible = "bosch,dcan-15.0", "bosch,d_can";
+//			reg = <0xffc00000 0x00001000>;
+//			interrupt-parent = <&hps_0_arm_gic_0>;
+//			interrupts = <0 131 4 0 132 4>;
+//			interrupt-names = "interrupt_sender0", "interrupt_sender1";
+//			clocks = <&can0_clk>;
+//			status = "okay";	/* embeddedsw.dts.params.status type STRING */
+//		}; //end can@0xffc00000 (hps_0_dcan0)
+//
+//		hps_0_dcan1: can@0xffc01000 {
+//			compatible = "bosch,dcan-15.0", "bosch,d_can";
+//			reg = <0xffc01000 0x00001000>;
+//			interrupt-parent = <&hps_0_arm_gic_0>;
+//			interrupts = <0 135 4 0 136 4>;
+//			interrupt-names = "interrupt_sender0", "interrupt_sender1";
+//			clocks = <&can1_clk>;
+//			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
+//		}; //end can@0xffc01000 (hps_0_dcan1)
 
 		hps_0_l3regs: rl3regs@0xff800000 {
 			compatible = "altr,l3regs-15.0", "altr,l3regs", "syscon";
@@ -1211,38 +1211,38 @@
 		soc_leds: leds {
 			compatible = "gpio-leds";	/* appended from boardinfo */
 
-			led_hps0: hps0 {
-				label = "hps_led0";	/* appended from boardinfo */
-				gpios = <&hps_0_gpio1_portb 15 1>;	/* appended from boardinfo */
-			}; //end hps0 (led_hps0)
-
-			led_hps1: hps1 {
-				label = "hps_led1";	/* appended from boardinfo */
-				gpios = <&hps_0_gpio1_portb 14 1>;	/* appended from boardinfo */
-			}; //end hps1 (led_hps1)
-
-			led_hps2: hps2 {
-				label = "hps_led2";	/* appended from boardinfo */
-				gpios = <&hps_0_gpio1_portb 13 1>;	/* appended from boardinfo */
-			}; //end hps2 (led_hps2)
-
-			led_hps3: hps3 {
-				label = "hps_led3";	/* appended from boardinfo */
-				gpios = <&hps_0_gpio1_portb 12 1>;	/* appended from boardinfo */
-			}; //end hps3 (led_hps3)
-
-			led_fpga0: fpga0 {
-			}; //end fpga0 (led_fpga0)
-
-			led_fpga1: fpga1 {
-			}; //end fpga1 (led_fpga1)
-
-			led_fpga2: fpga2 {
-			}; //end fpga2 (led_fpga2)
-
-			led_fpga3: fpga3 {
-			}; //end fpga3 (led_fpga3)
-		}; //end leds (soc_leds)
+//			led_hps0: hps0 {
+//				label = "hps_led0";	/* appended from boardinfo */
+//				gpios = <&hps_0_gpio1_portb 15 1>;	/* appended from boardinfo */
+//			}; //end hps0 (led_hps0)
+//
+//			led_hps1: hps1 {
+//				label = "hps_led1";	/* appended from boardinfo */
+//				gpios = <&hps_0_gpio1_portb 14 1>;	/* appended from boardinfo */
+//			}; //end hps1 (led_hps1)
+//
+//			led_hps2: hps2 {
+//				label = "hps_led2";	/* appended from boardinfo */
+//				gpios = <&hps_0_gpio1_portb 13 1>;	/* appended from boardinfo */
+//			}; //end hps2 (led_hps2)
+//
+//			led_hps3: hps3 {
+//				label = "hps_led3";	/* appended from boardinfo */
+//				gpios = <&hps_0_gpio1_portb 12 1>;	/* appended from boardinfo */
+//			}; //end hps3 (led_hps3)
+//
+//			led_fpga0: fpga0 {
+//			}; //end fpga0 (led_fpga0)
+//
+//			led_fpga1: fpga1 {
+//			}; //end fpga1 (led_fpga1)
+//
+//			led_fpga2: fpga2 {
+//			}; //end fpga2 (led_fpga2)
+//
+//			led_fpga3: fpga3 {
+//			}; //end fpga3 (led_fpga3)
+//		}; //end leds (soc_leds)
 
 		watchdog0: watchdog@ffd02000 {
 			compatible = "snps,dw-wdt";
@@ -1303,12 +1303,12 @@
 			compatible = "altr,socfpga-fpga2sdram-bridge";
 		};
 
-		usbphy0: usbphy@0 {
-			#phy-cells = <0>;	/* appended from boardinfo */
-			compatible = "usb-nop-xceiv";	/* appended from boardinfo */
-			status = "disable";	/* appended from boardinfo */
-		}; //end usbphy@0 (usbphy0)
-	}; //end sopc@0 (sopc0)
+//		usbphy0: usbphy@0 {
+//			#phy-cells = <0>;	/* appended from boardinfo */
+//			compatible = "usb-nop-xceiv";	/* appended from boardinfo */
+//			status = "disable";	/* appended from boardinfo */
+//		}; //end usbphy@0 (usbphy0)
+//	}; //end sopc@0 (sopc0)
 
 	chosen {
 		bootargs = "earlyprintk";
