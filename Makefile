@@ -53,14 +53,14 @@ rootfs:
 sd_image:preloader uboot kernel tools rootfs bcmsdk
 	cp -f linux-socfpga.git/arch/arm/boot/zImage ./host_tools/sd_image/kernel/
 	cp -f linux-socfpga.git/arch/arm/boot/dts/socfpga_cyclone5_pcie.dtb  ./host_tools/sd_image/kernel/socfpga_cyclone5_chameleon96.dtb
-	sudo cp -f flashtools/flash_read host_tools/sd_image/rootfs/usr/bin/
-	sudo cp -f flashtools/flash_write host_tools/sd_image/rootfs/usr/bin/
-	sudo rm -rf host_tools/sd_image/rootfs/opt/bcmsdk
-	sudo mkdir -p host_tools/sd_image/rootfs/opt
-	sudo mkdir -p host_tools/sd_image/rootfs/opt/bcmsdk
-	sudo cp -rf sdk-all-6.5.7/rc/* host_tools/sd_image/rootfs/opt/bcmsdk
-	sudo cp -rf sdk-all-6.5.7/build/linux/user/cyconevsoc-4_1/* host_tools/sd_image/rootfs/opt/bcmsdk
-	cd ./host_tools/sd_image;echo y | sudo ./makeimage.sh
+	cp -f flashtools/flash_read host_tools/sd_image/rootfs/usr/bin/
+	cp -f flashtools/flash_write host_tools/sd_image/rootfs/usr/bin/
+	rm -rf host_tools/sd_image/rootfs/opt/bcmsdk
+	mkdir -p host_tools/sd_image/rootfs/opt
+	mkdir -p host_tools/sd_image/rootfs/opt/bcmsdk
+	cp -rf sdk-all-6.5.7/rc/* host_tools/sd_image/rootfs/opt/bcmsdk
+	cp -rf sdk-all-6.5.7/build/linux/user/cyconevsoc-4_1/* host_tools/sd_image/rootfs/opt/bcmsdk
+	cd ./host_tools/sd_image;echo y | ./makeimage.sh
 	
 
 clean:
