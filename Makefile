@@ -7,7 +7,7 @@
 
 CORECOUNT=$(shell cat /proc/cpuinfo| grep "physical id"| sort| uniq| wc -l)
 ARCH=arm
-WORKSPACE=${PWD}
+WORKSPACE=${shell pwd}
 CROSS_COMPILE=${WORKSPACE}/host_tools/gcc-linaro-arm-linux-gnueabihf-4.8-2014.04_linux/bin/arm-linux-gnueabihf-
 
 export ARCH CORECOUNT CROSS_COMPILE WORKSPACE
@@ -44,10 +44,9 @@ bcmsdk: kernel
 
 #6.untar the rootfs 
 rootfs:
-	sudo rm -rf host_tools/sd_image/rootfs
+	rm -rf host_tools/sd_image/rootfs
 	mkdir -p host_tools/sd_image/rootfs
-	cd  host_tools/sd_image && sudo tar xvmf ./rootfs.tar -C rootfs/
-	cd -	
+	tar xvmf host_tools/sd_image/rootfs.tar -C host_tools/sd_image/rootfs/
 
 #7.cp zImage,u-boot.scr,soc_system.rbf,socfpga.dtb
 
