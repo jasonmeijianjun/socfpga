@@ -1208,8 +1208,8 @@
 			compatible = "altr,pcie-rpde";	/* appended from boardinfo */
 		}; //end pcie_rpde@0 (pcie_rpde)
 
-		soc_leds: leds {
-			compatible = "gpio-leds";	/* appended from boardinfo */
+//		soc_leds: leds {
+//			compatible = "gpio-leds";	/* appended from boardinfo */
 
 //			led_hps0: hps0 {
 //				label = "hps_led0";	/* appended from boardinfo */
@@ -1230,7 +1230,7 @@
 //				label = "hps_led3";	/* appended from boardinfo */
 //				gpios = <&hps_0_gpio1_portb 12 1>;	/* appended from boardinfo */
 //			}; //end hps3 (led_hps3)
-//
+
 //			led_fpga0: fpga0 {
 //			}; //end fpga0 (led_fpga0)
 //
@@ -1239,7 +1239,7 @@
 //
 //			led_fpga2: fpga2 {
 //			}; //end fpga2 (led_fpga2)
-//
+
 //			led_fpga3: fpga3 {
 //			}; //end fpga3 (led_fpga3)
 //		}; //end leds (soc_leds)
@@ -1308,7 +1308,7 @@
 //			compatible = "usb-nop-xceiv";	/* appended from boardinfo */
 //			status = "disable";	/* appended from boardinfo */
 //		}; //end usbphy@0 (usbphy0)
-//	}; //end sopc@0 (sopc0)
+	}; //end sopc@0 (sopc0)
 
 	chosen {
 		bootargs = "earlyprintk";
