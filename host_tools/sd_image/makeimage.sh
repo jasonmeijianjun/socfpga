@@ -83,6 +83,9 @@ echo "FAT_BLOCKS" ${FAT_BLOCKS}
 rm -f ./vfat.img
 mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ./vfat.img ${FAT_BLOCKS}
 
+cp ./kernel/chameleon96.rbf ./kernel/soc_system.rbf
+cp ./kernel/socfpga_cyclone5_chameleon96.dtb ./kernel/soc_system.dtb
+cp ./kernel/socfpga_cyclone5_chameleon96.dtb ./kernel/socfpga.dtb
 #copy zImage dtb rtf to vfat image.
 mcopy -i vfat.img  -s ./kernel/zImage ::/zImage
 mcopy -i vfat.img  -s ./kernel/chameleon96.rbf ::/chameleon96.rbf
@@ -90,6 +93,9 @@ mcopy -i vfat.img  -s ./kernel/extlinux ::/
 mcopy -i vfat.img  -s ./kernel/image-version-info ::/image-version-info
 mcopy -i vfat.img  -s ./kernel/socfpga_cyclone5_chameleon96.dtb ::/socfpga_cyclone5_chameleon96.dtb
 mcopy -i vfat.img  -s ./kernel/u-boot.scr ::/u-boot.scr
+mcopy -i vfat.img  -s ./kernel/soc_system.rbf ::/soc_system.rbf
+mcopy -i vfat.img  -s ./kernel/socfpga.dtb ::/socfpga.dtb
+mcopy -i vfat.img  -s ./kernel/soc_system.dtb ::/soc_system.dtb
 
 #Generate root filesystem.
 dd if=/dev/zero of=rootfs.img bs=1K count=0 seek=${ROOTFS_SIZE}
