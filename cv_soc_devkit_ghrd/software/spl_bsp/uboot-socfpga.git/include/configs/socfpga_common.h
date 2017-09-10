@@ -63,7 +63,7 @@
 #define CONFIG_SYS_TEXT_BASE		0x01000040
 #endif
 /* Default load address */
-#define CONFIG_SYS_LOAD_ADDR		0x8000
+#define CONFIG_SYS_LOAD_ADDR		0x80000        /*The device tree is bigger than reference board.*/
 #ifdef CONFIG_USE_IRQ
 /* Enable board late init for ECC setup if IRQ enabled */
 #define CONFIG_BOARD_LATE_INIT
@@ -184,8 +184,8 @@
 	"fdtaddr=0x00000100\0" \
 	"bootimage=zImage\0" \
 	"bootimagesize=0x600000\0" \
-	"fdtimage=socfpga.dtb\0" \
-	"fdtimagesize=0x7000\0" \
+	"fdtimage=soc_system.dtb\0" \
+	"fdtimagesize=0x70000\0" \
 	"mmcloadcmd=fatload\0" \
 	"mmcloadpart=1\0" \
 	"mmcroot=/dev/mmcblk0p2\0" \
