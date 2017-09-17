@@ -73,7 +73,7 @@
  * Handoff files must provide user option whether to
  * enable watchdog during preloader execution phase
  */
-#define CONFIG_PRELOADER_WATCHDOG_ENABLE	(0)
+#define CONFIG_PRELOADER_WATCHDOG_ENABLE	(1)
 
 /*
  * Handoff files must provide user option whether to enable
@@ -114,6 +114,11 @@
 #define CONFIG_FPGA_DATA_BASE			0xffff0000
 #define CONFIG_FPGA_DATA_MAX_SIZE		(0x10000)
 #endif
+
+/*
+ * Add new option to force ramboot pll reset
+ */
+#define CONFIG_PRELOADER_RAMBOOT_PLLRESET	(1)
 
 /*
  * Enabled write STATE_VALID value to STATE_REG register to
