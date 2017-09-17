@@ -737,6 +737,7 @@
 			clocks = <&l4_mp_clk>;
 			#gpio-cells = <2>;
 			gpio-controller;
+			status = "okay";	/* embeddedsw.dts.params.status type STRING */
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -759,6 +760,7 @@
 			interrupt-parent = <&hps_0_arm_gic_0>;
 			interrupts = <0 165 4>;
 			clocks = <&l4_mp_clk>;
+			status = "okay";	/* embeddedsw.dts.params.status type STRING */
 			#gpio-cells = <2>;
 			gpio-controller;
 			#address-cells = <1>;
@@ -785,6 +787,7 @@
 			clocks = <&l4_mp_clk>;
 			#gpio-cells = <2>;
 			gpio-controller;
+			status = "okay";	/* embeddedsw.dts.params.status type STRING */
 			#address-cells = <1>;
 			#size-cells = <0>;
 
@@ -1097,7 +1100,7 @@
 			mac-address = "[00 00 00 00 00 00]";	/* embeddedsw.dts.params.mac-address type STRING */
 			snps,multicast-filter-bins = <256>;	/* embeddedsw.dts.params.snps,multicast-filter-bins type NUMBER */
 			snps,perfect-filter-entries = <128>;	/* embeddedsw.dts.params.snps,perfect-filter-entries type NUMBER */
-			status = "disabled";	/* embeddedsw.dts.params.status type STRING */
+			status = "disabled";	/* "disabled" embeddedsw.dts.params.status type STRING */
 			address-bits = <48>;
 			max-frame-size = <1518>;
 			local-mac-address = [00 00 00 00 00 00];
@@ -1149,18 +1152,18 @@
 			phy-mode = "rgmii";	/* appended from boardinfo */
 			snps,phy-addr = <0xffffffff>;	/* appended from boardinfo */
 			phy-addr = <0xffffffff>;	/* appended from boardinfo */
-//			txc-skew-ps = <3000>;	/* appended from boardinfo */
-//			rxc-skew-ps = <3000>;	/* appended from boardinfo */
-//			txen-skew-ps = <0>;	/* appended from boardinfo */
-//			rxdv-skew-ps = <0>;	/* appended from boardinfo */
-//			rxd0-skew-ps = <0>;	/* appended from boardinfo */
-//			rxd1-skew-ps = <0>;	/* appended from boardinfo */
-//			rxd2-skew-ps = <0>;	/* appended from boardinfo */
-//			rxd3-skew-ps = <0>;	/* appended from boardinfo */
-//			txd0-skew-ps = <0>;	/* appended from boardinfo */
-//			txd1-skew-ps = <0>;	/* appended from boardinfo */
-//			txd2-skew-ps = <0>;	/* appended from boardinfo */
-//			txd3-skew-ps = <0>;	/* appended from boardinfo */
+			rxd0-skew-ps = <0>;
+			rxd1-skew-ps = <0>;
+			rxd2-skew-ps = <0>;
+			rxd3-skew-ps = <0>;
+			txen-skew-ps = <0>;
+			txc-skew-ps = <2600>;
+			rxdv-skew-ps = <0>;
+			rxc-skew-ps = <2000>;
+		        snps,reset-gpio = <&hps_0_gpio1_portb 28 0>;   //GPIO57
+		        snps,reset-active-low;
+		        snps,reset-delays-us = <10000 10000 10000>;
+
 			altr,sysmgr-syscon = <&hps_0_sysmgr 0x00000060 2>;	/* appended from boardinfo */
 			reset-names = "stmmaceth";	/* appended from boardinfo */
 			resets = <&hps_0_rstmgr EMAC1_RESET>;	/* appended from boardinfo */
