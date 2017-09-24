@@ -2,7 +2,7 @@
 #
 # Makefile to Manage QuartusII/QSys Design
 #
-# Copyright Altera (c) 2017
+# Copyright Altera (c) 2015
 # All Rights Reserved
 #
 ################################################
@@ -716,7 +716,7 @@ help-init:
 	@$(ECHO) "*                                       *"
 	@$(ECHO) "* Manage QuartusII/QSys design          *"
 	@$(ECHO) "*                                       *"
-	@$(ECHO) "*     Copyright (c) 2017                *"
+	@$(ECHO) "*     Copyright (c) 2015                *"
 	@$(ECHO) "*     All Rights Reserved               *"
 	@$(ECHO) "*                                       *"
 	@$(ECHO) "*****************************************"
