@@ -9,8 +9,6 @@
 # example command to execute this script file
 #   qsys-script --script=create_ghrd_qsys.tcl --cmd="set qsys_name soc_system; set devicefamily CYCLONEV; set device 5CSXFC6D6F31C8ES"
     
-source ./design_config.tcl
-	
 if { ![ info exists devicefamily ] } {
   set devicefamily "CYCLONEV"
 } else {
@@ -29,18 +27,7 @@ if { ![ info exists qsys_name ] } {
   puts "-- Accepted parameter \$qsys_name = $qsys_name"
 }
 
-if { ![ info exists fpga_pcie ] } {
-  set fpga_pcie $PCIE_ENABLE
-} else {
-  puts "-- Accepted parameter \$fpga_pcie = $fpga_pcie"
-}
-
-if {$fpga_pcie == 1} {
-source ./construct_subsys_pcie.tcl
-reload_ip_catalog
-}
-
-package require -exact qsys 14.1
+package require -exact qsys 13.1
 
 create_system $qsys_name
 
@@ -539,13 +526,13 @@ create_system $qsys_name
     set_instance_parameter_value fpga_only_master {PLI_PORT} {50000}
     set_instance_parameter_value fpga_only_master {FAST_VER} {0}
     set_instance_parameter_value fpga_only_master {FIFO_DEPTHS} {2}
-	if {$fpga_pcie == 0} {
+
     add_instance f2sdram_only_master altera_jtag_avalon_master
     set_instance_parameter_value f2sdram_only_master {USE_PLI} {0}
     set_instance_parameter_value f2sdram_only_master {PLI_PORT} {50000}
     set_instance_parameter_value f2sdram_only_master {FAST_VER} {0}
     set_instance_parameter_value f2sdram_only_master {FIFO_DEPTHS} {2}
-	}
+
     add_instance mm_bridge_0 altera_avalon_mm_bridge
     set_instance_parameter_value mm_bridge_0 {DATA_WIDTH} {32}
     set_instance_parameter_value mm_bridge_0 {SYMBOL_WIDTH} {8}
@@ -613,17 +600,12 @@ create_system $qsys_name
     add_instance onchip_memory2_0 altera_avalon_onchip_memory2
     set_instance_parameter_value onchip_memory2_0 {allowInSystemMemoryContentEditor} {0}
     set_instance_parameter_value onchip_memory2_0 {blockType} {AUTO}
-	if {$fpga_pcie == 1} {
-	set_instance_parameter_value onchip_memory2_0 {dataWidth} {64}
-	set_instance_parameter_value onchip_memory2_0 {memorySize} {262144.0}
-	} else {	
     set_instance_parameter_value onchip_memory2_0 {dataWidth} {8}
-	set_instance_parameter_value onchip_memory2_0 {memorySize} {65536.0}
-    }
-	set_instance_parameter_value onchip_memory2_0 {dualPort} {0}
+    set_instance_parameter_value onchip_memory2_0 {dualPort} {0}
     set_instance_parameter_value onchip_memory2_0 {initMemContent} {1}
     set_instance_parameter_value onchip_memory2_0 {initializationFileName} {onchip_memory2_0}
     set_instance_parameter_value onchip_memory2_0 {instanceID} {NONE}
+    set_instance_parameter_value onchip_memory2_0 {memorySize} {65536.0}
     set_instance_parameter_value onchip_memory2_0 {readDuringWriteMode} {DONT_CARE}
     set_instance_parameter_value onchip_memory2_0 {simAllowMRAMContentsFile} {0}
     set_instance_parameter_value onchip_memory2_0 {simMemInitOnlyFilename} {0}
@@ -645,257 +627,163 @@ create_system $qsys_name
     set_instance_parameter_value clk_0 {clockFrequencyKnown} {1}
     set_instance_parameter_value clk_0 {resetSynchronousEdges} {NONE}
 
-    add_instance in_system_sources_probes_0 altera_in_system_sources_probes 
-    set_instance_parameter_value in_system_sources_probes_0 {gui_use_auto_index} {1}
-    set_instance_parameter_value in_system_sources_probes_0 {sld_instance_index} {0}
-    set_instance_parameter_value in_system_sources_probes_0 {instance_id} {RST}
-    set_instance_parameter_value in_system_sources_probes_0 {probe_width} {0}
-    set_instance_parameter_value in_system_sources_probes_0 {source_width} {3}
-    set_instance_parameter_value in_system_sources_probes_0 {source_initial_value} {0}
-    set_instance_parameter_value in_system_sources_probes_0 {create_source_clock} {1}
-    set_instance_parameter_value in_system_sources_probes_0 {create_source_clock_enable} {0}
-
-
-	if {$fpga_pcie == 1} {	
-    add_instance pcie_0 subsys_pcie
-	
-	add_instance pio_rp_reset altera_avalon_pio
-    set_instance_parameter_value pio_rp_reset {bitClearingEdgeCapReg} {0}
-    set_instance_parameter_value pio_rp_reset {bitModifyingOutReg} {0}
-    set_instance_parameter_value pio_rp_reset {captureEdge} {0}
-    set_instance_parameter_value pio_rp_reset {direction} {InOut}
-    set_instance_parameter_value pio_rp_reset {edgeType} {RISING}
-    set_instance_parameter_value pio_rp_reset {generateIRQ} {0}
-    set_instance_parameter_value pio_rp_reset {irqType} {LEVEL}
-    set_instance_parameter_value pio_rp_reset {resetValue} {0.0}
-    set_instance_parameter_value pio_rp_reset {simDoTestBenchWiring} {0}
-    set_instance_parameter_value pio_rp_reset {simDrivenValue} {0.0}
-    set_instance_parameter_value pio_rp_reset {width} {1}
-	
-	add_connection pcie_0.address_span_extender_0_expanded_master hps_0.f2h_sdram0_data 
-    set_connection_parameter_value pcie_0.address_span_extender_0_expanded_master/hps_0.f2h_sdram0_data arbitrationPriority {1}
-    set_connection_parameter_value pcie_0.address_span_extender_0_expanded_master/hps_0.f2h_sdram0_data baseAddress {0x0000}
-    set_connection_parameter_value pcie_0.address_span_extender_0_expanded_master/hps_0.f2h_sdram0_data defaultConnection {0}
-
-    add_connection hps_0.h2f_axi_master pcie_0.ccb_h2f_s0 
-    set_connection_parameter_value hps_0.h2f_axi_master/pcie_0.ccb_h2f_s0 arbitrationPriority {1}
-    set_connection_parameter_value hps_0.h2f_axi_master/pcie_0.ccb_h2f_s0 baseAddress {0x10000000}
-    set_connection_parameter_value hps_0.h2f_axi_master/pcie_0.ccb_h2f_s0 defaultConnection {0}
-	
-	add_connection mm_bridge_0.m0 pcie_0.pb_lwh2f_pcie_s0 
-    set_connection_parameter_value mm_bridge_0.m0/pcie_0.pb_lwh2f_pcie_s0 arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/pcie_0.pb_lwh2f_pcie_s0 baseAddress {0x10000}
-    set_connection_parameter_value mm_bridge_0.m0/pcie_0.pb_lwh2f_pcie_s0 defaultConnection {0}
-
-    add_connection mm_bridge_0.m0 pio_rp_reset.s1 
-    set_connection_parameter_value mm_bridge_0.m0/pio_rp_reset.s1 arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/pio_rp_reset.s1 baseAddress {0x00020140}
-    set_connection_parameter_value mm_bridge_0.m0/pio_rp_reset.s1 defaultConnection {0}
-	
-    add_connection pcie_0.pb_2_ocm_m0 onchip_memory2_0.s1 
-    set_connection_parameter_value pcie_0.pb_2_ocm_m0/onchip_memory2_0.s1 arbitrationPriority {1}
-    set_connection_parameter_value pcie_0.pb_2_ocm_m0/onchip_memory2_0.s1 baseAddress {0x0000}
-    set_connection_parameter_value pcie_0.pb_2_ocm_m0/onchip_memory2_0.s1 defaultConnection {0}
-	
-	add_connection clk_0.clk pio_rp_reset.clk 
-
-    add_connection clk_0.clk pcie_0.clk 
-
-	add_connection hps_0.f2h_irq0 pcie_0.msgdma_0_csr_irq 
-    set_connection_parameter_value hps_0.f2h_irq0/pcie_0.msgdma_0_csr_irq irqNumber {4}
-
-    add_connection hps_0.f2h_irq0 pcie_0.msi_to_gic_gen_0_interrupt_sender 
-    set_connection_parameter_value hps_0.f2h_irq0/pcie_0.msi_to_gic_gen_0_interrupt_sender irqNumber {5}
-
-    add_connection hps_0.f2h_irq0 pcie_0.pcie_hip_avmm_cra_irq 
-    set_connection_parameter_value hps_0.f2h_irq0/pcie_0.pcie_hip_avmm_cra_irq irqNumber {3}
-	
-	add_connection clk_0.clk_reset pio_rp_reset.reset 
-	
-    add_connection clk_0.clk_reset pcie_0.reset 
-
-    add_connection pcie_0.nreset_status_out_reset onchip_memory2_0.reset1 
-	}
-	
     # connections and connection parameters
-    add_connection clk_0.clk in_system_sources_probes_0.source_clk 
-
-	if {$fpga_pcie == 0} {
-	add_connection fpga_only_master.master onchip_memory2_0.s1 
-    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 arbitrationPriority {1}
-    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 baseAddress {0x0000}
-    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 defaultConnection {0}
-	}
-	
-    add_connection hps_0.h2f_axi_master onchip_memory2_0.s1 
+    add_connection hps_0.h2f_axi_master onchip_memory2_0.s1 avalon
     set_connection_parameter_value hps_0.h2f_axi_master/onchip_memory2_0.s1 arbitrationPriority {1}
     set_connection_parameter_value hps_0.h2f_axi_master/onchip_memory2_0.s1 baseAddress {0x0000}
     set_connection_parameter_value hps_0.h2f_axi_master/onchip_memory2_0.s1 defaultConnection {0}
 
-
-    add_connection ILC.irq dipsw_pio.irq 
+    add_connection ILC.irq dipsw_pio.irq interrupt
     set_connection_parameter_value ILC.irq/dipsw_pio.irq irqNumber {0}
 
-    add_connection ILC.irq button_pio.irq 
+    add_connection ILC.irq button_pio.irq interrupt
     set_connection_parameter_value ILC.irq/button_pio.irq irqNumber {1}
 
-    add_connection ILC.irq jtag_uart.irq 
+    add_connection ILC.irq jtag_uart.irq interrupt
     set_connection_parameter_value ILC.irq/jtag_uart.irq irqNumber {2}
 
-    add_connection hps_0.f2h_irq0 dipsw_pio.irq 
+    add_connection hps_0.f2h_irq0 dipsw_pio.irq interrupt
     set_connection_parameter_value hps_0.f2h_irq0/dipsw_pio.irq irqNumber {0}
 
-    add_connection hps_0.f2h_irq0 button_pio.irq 
+    add_connection hps_0.f2h_irq0 button_pio.irq interrupt
     set_connection_parameter_value hps_0.f2h_irq0/button_pio.irq irqNumber {1}
 
-    add_connection hps_0.f2h_irq0 jtag_uart.irq 
+    add_connection hps_0.f2h_irq0 jtag_uart.irq interrupt
     set_connection_parameter_value hps_0.f2h_irq0/jtag_uart.irq irqNumber {2}
 
-    add_connection clk_0.clk ILC.clk 
+    add_connection clk_0.clk ILC.clk clock
 
-    add_connection clk_0.clk fpga_only_master.clk 
+    add_connection clk_0.clk fpga_only_master.clk clock
 
-    add_connection clk_0.clk jtag_uart.clk 
+    add_connection clk_0.clk jtag_uart.clk clock
 
-    add_connection clk_0.clk button_pio.clk 
+    add_connection clk_0.clk button_pio.clk clock
 
-    add_connection clk_0.clk dipsw_pio.clk 
+    add_connection clk_0.clk dipsw_pio.clk clock
 
-    add_connection clk_0.clk led_pio.clk 
+    add_connection clk_0.clk led_pio.clk clock
 
-    add_connection clk_0.clk sysid_qsys.clk 
+    add_connection clk_0.clk sysid_qsys.clk clock
 
-    add_connection clk_0.clk hps_0.h2f_lw_axi_clock 
+    add_connection clk_0.clk hps_0.h2f_lw_axi_clock clock
 
-    add_connection clk_0.clk hps_0.f2h_axi_clock 
+    add_connection clk_0.clk hps_0.f2h_axi_clock clock
 
-    add_connection mm_bridge_0.m0 ILC.avalon_slave 
+    add_connection fpga_only_master.master jtag_uart.avalon_jtag_slave avalon
+    set_connection_parameter_value fpga_only_master.master/jtag_uart.avalon_jtag_slave arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/jtag_uart.avalon_jtag_slave baseAddress {0x00020000}
+    set_connection_parameter_value fpga_only_master.master/jtag_uart.avalon_jtag_slave defaultConnection {0}
+
+    add_connection fpga_only_master.master button_pio.s1 avalon
+    set_connection_parameter_value fpga_only_master.master/button_pio.s1 arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/button_pio.s1 baseAddress {0x000100c0}
+    set_connection_parameter_value fpga_only_master.master/button_pio.s1 defaultConnection {0}
+
+    add_connection fpga_only_master.master dipsw_pio.s1 avalon
+    set_connection_parameter_value fpga_only_master.master/dipsw_pio.s1 arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/dipsw_pio.s1 baseAddress {0x00010080}
+    set_connection_parameter_value fpga_only_master.master/dipsw_pio.s1 defaultConnection {0}
+
+    add_connection fpga_only_master.master led_pio.s1 avalon
+    set_connection_parameter_value fpga_only_master.master/led_pio.s1 arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/led_pio.s1 baseAddress {0x00010040}
+    set_connection_parameter_value fpga_only_master.master/led_pio.s1 defaultConnection {0}
+
+    add_connection fpga_only_master.master sysid_qsys.control_slave avalon
+    set_connection_parameter_value fpga_only_master.master/sysid_qsys.control_slave arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/sysid_qsys.control_slave baseAddress {0x00010000}
+    set_connection_parameter_value fpga_only_master.master/sysid_qsys.control_slave defaultConnection {0}
+
+    add_connection fpga_only_master.master onchip_memory2_0.s1 avalon
+    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 baseAddress {0x0000}
+    set_connection_parameter_value fpga_only_master.master/onchip_memory2_0.s1 defaultConnection {0}
+
+    add_connection mm_bridge_0.m0 ILC.avalon_slave avalon
     set_connection_parameter_value mm_bridge_0.m0/ILC.avalon_slave arbitrationPriority {1}
     set_connection_parameter_value mm_bridge_0.m0/ILC.avalon_slave baseAddress {0x00030000}
     set_connection_parameter_value mm_bridge_0.m0/ILC.avalon_slave defaultConnection {0}
 
-    add_connection clk_0.clk hps_only_master.clk 
+    add_connection fpga_only_master.master ILC.avalon_slave avalon
+    set_connection_parameter_value fpga_only_master.master/ILC.avalon_slave arbitrationPriority {1}
+    set_connection_parameter_value fpga_only_master.master/ILC.avalon_slave baseAddress {0x00030000}
+    set_connection_parameter_value fpga_only_master.master/ILC.avalon_slave defaultConnection {0}
 
-    add_connection hps_only_master.master hps_0.f2h_axi_slave 
+    add_connection clk_0.clk hps_only_master.clk clock
+
+    add_connection hps_only_master.master hps_0.f2h_axi_slave avalon
     set_connection_parameter_value hps_only_master.master/hps_0.f2h_axi_slave arbitrationPriority {1}
     set_connection_parameter_value hps_only_master.master/hps_0.f2h_axi_slave baseAddress {0x0000}
     set_connection_parameter_value hps_only_master.master/hps_0.f2h_axi_slave defaultConnection {0}
 
-	if {$fpga_pcie == 1} {
-	add_connection pcie_0.coreclkout_out onchip_memory2_0.clk1 
+    add_connection clk_0.clk onchip_memory2_0.clk1 clock
 
-    add_connection pcie_0.coreclkout_out hps_0.f2h_sdram0_clock 
-	} else {
-	add_connection clk_0.clk hps_0.f2h_sdram0_clock 
+    add_connection clk_0.clk hps_0.h2f_axi_clock clock
 
-	add_connection clk_0.clk onchip_memory2_0.clk1 
-	}
-	
-    add_connection clk_0.clk hps_0.h2f_axi_clock 
+    add_connection clk_0.clk_reset ILC.reset_n reset
 
-    add_connection clk_0.clk_reset ILC.reset_n 
+    add_connection clk_0.clk_reset fpga_only_master.clk_reset reset
 
-    add_connection clk_0.clk_reset fpga_only_master.clk_reset 
+    add_connection clk_0.clk_reset jtag_uart.reset reset
 
-    add_connection clk_0.clk_reset jtag_uart.reset 
+    add_connection clk_0.clk_reset button_pio.reset reset
 
-    add_connection clk_0.clk_reset button_pio.reset 
+    add_connection clk_0.clk_reset dipsw_pio.reset reset
 
-    add_connection clk_0.clk_reset dipsw_pio.reset 
+    add_connection clk_0.clk_reset led_pio.reset reset
 
-    add_connection clk_0.clk_reset led_pio.reset 
+    add_connection clk_0.clk_reset sysid_qsys.reset reset
 
-    add_connection clk_0.clk_reset sysid_qsys.reset 
+    add_connection clk_0.clk_reset hps_only_master.clk_reset reset
 
-    add_connection clk_0.clk_reset hps_only_master.clk_reset 
+    add_connection clk_0.clk_reset onchip_memory2_0.reset1 reset
 
-    add_connection clk_0.clk_reset onchip_memory2_0.reset1 
+    add_connection clk_0.clk f2sdram_only_master.clk clock
 
-	if {$fpga_pcie == 0} {
-    add_connection clk_0.clk f2sdram_only_master.clk 
+    add_connection clk_0.clk_reset f2sdram_only_master.clk_reset reset
 
-    add_connection clk_0.clk_reset f2sdram_only_master.clk_reset 
-
-    add_connection f2sdram_only_master.master hps_0.f2h_sdram0_data 
+    add_connection f2sdram_only_master.master hps_0.f2h_sdram0_data avalon
     set_connection_parameter_value f2sdram_only_master.master/hps_0.f2h_sdram0_data arbitrationPriority {1}
     set_connection_parameter_value f2sdram_only_master.master/hps_0.f2h_sdram0_data baseAddress {0x0000}
     set_connection_parameter_value f2sdram_only_master.master/hps_0.f2h_sdram0_data defaultConnection {0}
-	}
-	
-    add_connection clk_0.clk mm_bridge_0.clk 
 
-    add_connection clk_0.clk_reset mm_bridge_0.reset 
+    add_connection clk_0.clk hps_0.f2h_sdram0_clock clock
 
-    add_connection mm_bridge_0.m0 sysid_qsys.control_slave 
+    add_connection clk_0.clk mm_bridge_0.clk clock
+
+    add_connection clk_0.clk_reset mm_bridge_0.reset reset
+
+    add_connection mm_bridge_0.m0 sysid_qsys.control_slave avalon
     set_connection_parameter_value mm_bridge_0.m0/sysid_qsys.control_slave arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/sysid_qsys.control_slave baseAddress {0x00020008}
+    set_connection_parameter_value mm_bridge_0.m0/sysid_qsys.control_slave baseAddress {0x00010000}
     set_connection_parameter_value mm_bridge_0.m0/sysid_qsys.control_slave defaultConnection {0}
 
-    add_connection mm_bridge_0.m0 jtag_uart.avalon_jtag_slave 
+    add_connection mm_bridge_0.m0 jtag_uart.avalon_jtag_slave avalon
     set_connection_parameter_value mm_bridge_0.m0/jtag_uart.avalon_jtag_slave arbitrationPriority {1}
     set_connection_parameter_value mm_bridge_0.m0/jtag_uart.avalon_jtag_slave baseAddress {0x00020000}
     set_connection_parameter_value mm_bridge_0.m0/jtag_uart.avalon_jtag_slave defaultConnection {0}
 
-    add_connection mm_bridge_0.m0 button_pio.s1 
+    add_connection mm_bridge_0.m0 button_pio.s1 avalon
     set_connection_parameter_value mm_bridge_0.m0/button_pio.s1 arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/button_pio.s1 baseAddress {0x000200c0}
+    set_connection_parameter_value mm_bridge_0.m0/button_pio.s1 baseAddress {0x000100c0}
     set_connection_parameter_value mm_bridge_0.m0/button_pio.s1 defaultConnection {0}
 
-    add_connection mm_bridge_0.m0 dipsw_pio.s1 
+    add_connection mm_bridge_0.m0 dipsw_pio.s1 avalon
     set_connection_parameter_value mm_bridge_0.m0/dipsw_pio.s1 arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/dipsw_pio.s1 baseAddress {0x00020080}
+    set_connection_parameter_value mm_bridge_0.m0/dipsw_pio.s1 baseAddress {0x00010080}
     set_connection_parameter_value mm_bridge_0.m0/dipsw_pio.s1 defaultConnection {0}
 
-    add_connection mm_bridge_0.m0 led_pio.s1 
+    add_connection mm_bridge_0.m0 led_pio.s1 avalon
     set_connection_parameter_value mm_bridge_0.m0/led_pio.s1 arbitrationPriority {1}
-    set_connection_parameter_value mm_bridge_0.m0/led_pio.s1 baseAddress {0x00020040}
+    set_connection_parameter_value mm_bridge_0.m0/led_pio.s1 baseAddress {0x00010040}
     set_connection_parameter_value mm_bridge_0.m0/led_pio.s1 defaultConnection {0}
 
-    add_connection hps_0.h2f_lw_axi_master mm_bridge_0.s0 
+    add_connection hps_0.h2f_lw_axi_master mm_bridge_0.s0 avalon
     set_connection_parameter_value hps_0.h2f_lw_axi_master/mm_bridge_0.s0 arbitrationPriority {1}
-	if {$fpga_pcie == 1} {
     set_connection_parameter_value hps_0.h2f_lw_axi_master/mm_bridge_0.s0 baseAddress {0x0000}
-	} else {
-    set_connection_parameter_value hps_0.h2f_lw_axi_master/mm_bridge_0.s0 baseAddress {0x40000}
-	}
     set_connection_parameter_value hps_0.h2f_lw_axi_master/mm_bridge_0.s0 defaultConnection {0}
-	
-	add_connection fpga_only_master.master mm_bridge_0.s0 
-    set_connection_parameter_value fpga_only_master.master/mm_bridge_0.s0 arbitrationPriority {1}
-	if {$fpga_pcie == 1} {
-    set_connection_parameter_value fpga_only_master.master/mm_bridge_0.s0 baseAddress {0x0000}
-	} else {
-    set_connection_parameter_value fpga_only_master.master/mm_bridge_0.s0 baseAddress {0x40000}
-	}
-    set_connection_parameter_value fpga_only_master.master/mm_bridge_0.s0 defaultConnection {0}
-
 
     # exported interfaces
-    add_interface issp_hps_resets conduit end
-    set_interface_property issp_hps_resets EXPORT_OF in_system_sources_probes_0.sources
-
-	if {$fpga_pcie == 1} {
-    add_interface alt_xcvr_reconfig_0_reconfig_mgmt avalon slave
-    set_interface_property alt_xcvr_reconfig_0_reconfig_mgmt EXPORT_OF pcie_0.alt_xcvr_reconfig_0_reconfig_mgmt	
-	add_interface coreclk_fanout_clk clock source
-    set_interface_property coreclk_fanout_clk EXPORT_OF pcie_0.coreclk_fanout_clk
-    add_interface coreclk_fanout_clk_reset reset source
-    set_interface_property coreclk_fanout_clk_reset EXPORT_OF pcie_0.coreclk_fanout_clk_reset
-    add_interface pcie_hip_avmm_hip_ctrl conduit end
-    set_interface_property pcie_hip_avmm_hip_ctrl EXPORT_OF pcie_0.pcie_hip_avmm_hip_ctrl
-    add_interface pcie_hip_avmm_hip_pipe conduit end
-    set_interface_property pcie_hip_avmm_hip_pipe EXPORT_OF pcie_0.pcie_hip_avmm_hip_pipe
-    add_interface pcie_hip_avmm_hip_serial conduit end
-    set_interface_property pcie_hip_avmm_hip_serial EXPORT_OF pcie_0.pcie_hip_avmm_hip_serial
-    add_interface pcie_hip_avmm_npor conduit end
-    set_interface_property pcie_hip_avmm_npor EXPORT_OF pcie_0.pcie_hip_avmm_npor
-    add_interface pcie_hip_avmm_reconfig_clk_locked conduit end
-    set_interface_property pcie_hip_avmm_reconfig_clk_locked EXPORT_OF pcie_0.pcie_hip_avmm_reconfig_clk_locked
-    add_interface pcie_hip_avmm_refclk clock sink
-    set_interface_property pcie_hip_avmm_refclk EXPORT_OF pcie_0.pcie_hip_avmm_refclk
-	add_interface pio_rp_reset_external_connection conduit end
-    set_interface_property pio_rp_reset_external_connection EXPORT_OF pio_rp_reset.external_connection	
-	}
     add_interface memory conduit end
     set_interface_property memory EXPORT_OF hps_0.memory
     add_interface clk clock sink
@@ -922,8 +810,8 @@ create_system $qsys_name
     set_interface_property hps_0_f2h_warm_reset_req EXPORT_OF hps_0.f2h_warm_reset_req
 
     # interconnect requirements
-    set_interconnect_requirement {$system} {qsys_mm.clockCrossingAdapter} {AUTO}
-    set_interconnect_requirement {$system} {qsys_mm.maxAdditionalLatency} {4}
+    set_interconnect_requirement {$system} {qsys_mm.clockCrossingAdapter} {HANDSHAKE}
+    set_interconnect_requirement {$system} {qsys_mm.maxAdditionalLatency} {0}
     set_interconnect_requirement {$system} {qsys_mm.insertDefaultSlave} {FALSE}
     set_interconnect_requirement {hps_only_master.master} {qsys_mm.security} {SECURE}
 	

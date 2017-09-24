@@ -9,9 +9,6 @@ set qipfiles "soc_system/synthesis/soc_system.qip,ip/altsource_probe/hps_reset.q
 set hdlfiles "ip/edge_detect/altera_edge_detector.v,ip/debounce/debounce.v,ghrd_top.v"
 set topname ghrd_top
 
-source ./design_config.tcl
-set fpga_pcie $PCIE_ENABLE
-
 # ... alternatively, above parameters can be passed in as script arguments
 #   quartus_sh --script=create_ghrd_quartus.tcl <parameter1 value1 parameter2 value2 ...>
 # parameters of this TCL includes
@@ -31,7 +28,6 @@ proc show_arguments {} {
   global topname
   global qipfiles
   global hdlfiles
-  global fpga_pcie
 
   foreach {key value} $quartus(args) {
     puts "-> Accepted parameter: $key,  \tValue: $value"
@@ -52,9 +48,6 @@ proc show_arguments {} {
     }
     if {$key == "hdlfiles"} {
       set hdlfiles $value
-    }
-	if {$key == "fpga_pcie"} {
-      set fpga_pcie $value
     }
 
   }
@@ -87,25 +80,10 @@ foreach hdlfile $hdlfilelist {
   set_global_assignment -name VERILOG_FILE $hdlfile
 }
 
-if {$fpga_pcie == 1} {
-set_global_assignment -name OPTIMIZATION_TECHNIQUE SPEED
-set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
-set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
-set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
-set_global_assignment -name PRE_MAPPING_RESYNTHESIS ON
-set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
-set_global_assignment -name OPTIMIZATION_MODE "HIGH PERFORMANCE EFFORT"
-set_global_assignment -name ROUTER_TIMING_OPTIMIZATION_LEVEL MAXIMUM
-}
-
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name EDA_SIMULATION_TOOL "<None>"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT NONE -section_id eda_simulation
 set_global_assignment -name SDC_FILE soc_system_timing.sdc
-
-if {$fpga_pcie == 1} {
-set_global_assignment -name SDC_FILE fpga_pcie.sdc
-}
 
 # enabling signaltap 
 set_global_assignment -name ENABLE_SIGNALTAP ON
@@ -124,47 +102,6 @@ set_location_assignment PIN_AB17 -to fpga_led_pio[3]
 set_location_assignment PIN_W15 -to fpga_led_pio[2]
 set_location_assignment PIN_Y16 -to fpga_led_pio[1]
 set_location_assignment PIN_AK2 -to fpga_led_pio[0]
-
-if {$fpga_pcie == 1} {
-set_location_assignment PIN_AE2 -to pcie_hip_rx_in0
-set_location_assignment PIN_AC2 -to pcie_hip_rx_in1
-set_location_assignment PIN_AA2 -to pcie_hip_rx_in2
-set_location_assignment PIN_W2 -to pcie_hip_rx_in3
-set_location_assignment PIN_AD4 -to pcie_hip_tx_out0
-set_location_assignment PIN_AB4 -to pcie_hip_tx_out1
-set_location_assignment PIN_Y4 -to pcie_hip_tx_out2
-set_location_assignment PIN_V4 -to pcie_hip_tx_out3
-set_location_assignment PIN_W22 -to pcie_npor_pin_perst
-set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to pcie_npor_pin_perst
-set_location_assignment PIN_W8 -to pcie_refclk_clk
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_rx_in0
-set_location_assignment PIN_AE1 -to "pcie_hip_rx_in0(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_rx_in1
-set_location_assignment PIN_AC1 -to "pcie_hip_rx_in1(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_rx_in2
-set_location_assignment PIN_AA1 -to "pcie_hip_rx_in2(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_rx_in3
-set_location_assignment PIN_W1 -to "pcie_hip_rx_in3(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_tx_out0
-set_location_assignment PIN_AD3 -to "pcie_hip_tx_out0(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_tx_out1
-set_location_assignment PIN_AB3 -to "pcie_hip_tx_out1(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_tx_out2
-set_location_assignment PIN_Y3 -to "pcie_hip_tx_out2(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_hip_tx_out3
-set_location_assignment PIN_V3 -to "pcie_hip_tx_out3(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_rx_in0(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_rx_in1(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_rx_in2(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_tx_out0(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_tx_out1(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_tx_out2(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to "pcie_hip_tx_out3(n)"
-set_instance_assignment -name IO_STANDARD "1.5-V PCML" -to pcie_refclk_clk
-set_location_assignment PIN_W7 -to "pcie_refclk_clk(n)"
-set_location_assignment PIN_AG6 -to pcie_perstn_out
-set_instance_assignment -name AUTO_OPEN_DRAIN_PINS ON -to pcie_perstn_out
-}
 
 # instance assignments
 set_instance_assignment -name IO_STANDARD "1.5 V" -to fpga_led_pio[0]

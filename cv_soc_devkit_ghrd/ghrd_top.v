@@ -2,8 +2,8 @@ module ghrd_top (
     // FPGA peripherals ports
 	input  wire [3:0]  fpga_dipsw_pio,                   
 	output wire [3:0]  fpga_led_pio,                     
-	input  wire [1:0]  fpga_button_pio, 
-   // HPS memory controller ports
+	input  wire [1:0]  fpga_button_pio,  
+    // HPS memory controller ports
 	output wire [14:0] hps_memory_mem_a,                           
 	output wire [2:0]  hps_memory_mem_ba,                          
 	output wire        hps_memory_mem_ck,                          
@@ -83,9 +83,9 @@ module ghrd_top (
 	inout  wire        hps_gpio_GPIO41,    
 	inout  wire        hps_gpio_GPIO42,    
 	inout  wire        hps_gpio_GPIO43,    
-	inout  wire        hps_gpio_GPIO44, 
+	inout  wire        hps_gpio_GPIO44,    
     // FPGA clock and reset
-	input  wire        fpga_clk_50
+	input  wire        fpga_clk_50                         
 );
 
 // internal wires and registers declaration
@@ -101,6 +101,7 @@ module ghrd_top (
 // connection of internal logics
   assign fpga_led_pio = fpga_led_internal;
   assign stm_hw_events    = {{18{1'b0}}, fpga_dipsw_pio, fpga_led_internal, fpga_debounced_buttons};
+
 // SoC sub-system module
 soc_system soc_inst (
   .memory_mem_a                         (hps_memory_mem_a),                               
@@ -190,7 +191,6 @@ soc_system soc_inst (
   .clk_clk                              (fpga_clk_50),
   .hps_0_h2f_reset_reset_n              (hps_fpga_reset_n),
   .reset_reset_n                        (hps_fpga_reset_n),
-  .issp_hps_resets_source               (hps_reset_req),
   .hps_0_f2h_cold_reset_req_reset_n     (~hps_cold_reset),
   .hps_0_f2h_warm_reset_req_reset_n     (~hps_warm_reset),
   .hps_0_f2h_debug_reset_req_reset_n    (~hps_debug_reset)
@@ -208,6 +208,12 @@ debounce debounce_inst (
   defparam debounce_inst.TIMEOUT = 50000;               // at 50Mhz this is a debounce time of 1ms
   defparam debounce_inst.TIMEOUT_WIDTH = 16;            // ceil(log2(TIMEOUT))
   
+// Source/Probe megawizard instance
+hps_reset hps_reset_inst (
+  .source_clk (fpga_clk_50),
+  .source     (hps_reset_req)
+);
+
 altera_edge_detector pulse_cold_reset (
   .clk       (fpga_clk_50),
   .rst_n     (hps_fpga_reset_n),
@@ -238,6 +244,4 @@ altera_edge_detector pulse_debug_reset (
   defparam pulse_debug_reset.EDGE_TYPE = 1;
   defparam pulse_debug_reset.IGNORE_RST_WHILE_BUSY = 1;
 
-endmodule 
-
-
+endmodule

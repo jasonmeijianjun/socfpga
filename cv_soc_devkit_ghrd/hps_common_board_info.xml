@@ -6,7 +6,6 @@ in the device tree for a bus_id used to talk the phy.  Having
 these aliases allows seamless support of multiple emacs
 -->
 <alias name="ethernet0" value="/sopc@0/ethernet@0xff702000"/>
-<DTAppend name="enable-method" type="string" parentpath="/cpus" val="altr,socfpga-smp" />
 
 <DTAppend name="next-level-cache" type="phandle" parentlabel="hps_0_arm_a9_0" val="hps_0_L2"/>
 <DTAppend name="next-level-cache" type="phandle" parentlabel="hps_0_arm_a9_1" val="hps_0_L2"/>
@@ -60,8 +59,8 @@ these aliases allows seamless support of multiple emacs
 <DTAppend name="#reset-cells" type="number" parentlabel="hps_0_rstmgr" val="1"/>
 
 
+
 <DTAppend name="speed-mode" type="number" parentlabel="hps_0_i2c0" val="0"/>
-<DTAppend name="clock-frequency" type="number" parentlabel="hps_0_i2c0" val="100000"/>
 <!-- adjust the falling times to decrease the i2c frequency to 50Khz
      because the LCD module does not work at the standard 100Khz
 -->
@@ -78,65 +77,19 @@ these aliases allows seamless support of multiple emacs
 <DTAppend name="brightness" type="number" parentlabel="lcd" val="8"/>
 <DTAppend name="pagesize" type="number" parentlabel="eeprom" val="32"/>
 
-<DTAppend name="sdmmc_clk_divided" type="node" parentlabel="hps_0_clkmgr" newlabel="sdmmc_clk_divided"/>
-<DTAppend name="#clock-cells" type="number" parentlabel="sdmmc_clk_divided" val="0"/>
-<DTAppend name="compatible" type="string" parentlabel="sdmmc_clk_divided" val="altr,socfpga-gate-clk"/>
-<DTAppend name="clocks" type="phandle" parentlabel="sdmmc_clk_divided" val="sdmmc_clk"/>
-<DTAppend name="clk-gate" parentlabel="sdmmc_clk_divided">
-<val type="hex">0xa0</val>
-<val type="hex">8</val>
-</DTAppend>
-<DTAppend name="fixed-divider" type="number" parentlabel="sdmmc_clk_divided" val="4"/>
-<DTAppend name="clocks" parentlabel="hps_0_sdmmc">
-<val type="phandle">l4_mp_clk</val>
-<val type="phandle">sdmmc_clk_divided</val>
-</DTAppend>
-<DTAppend name="clk-phase" parentlabel="sdmmc_clk">
-<val type="number">0</val> 
-<val type="number">135</val> 
-</DTAppend>
-
 <DTAppend name="#address-cells" type="number" parentlabel="hps_0_sdmmc" val="1"/>
 <DTAppend name="#size-cells" type="number" parentlabel="hps_0_sdmmc" val="0"/>
+<DTAppend name="supports-highspeed"  parentlabel="hps_0_sdmmc" />
 <DTAppend name="broken-cd" type="bool" parentlabel="hps_0_sdmmc" val="true"/>
-<DTAppend name="cap-mmc-highspeed" type="bool" parentlabel="hps_0_sdmmc" val="true"/>
-<DTAppend name="cap-sd-highspeed" type="bool" parentlabel="hps_0_sdmmc" val="true"/>
-<DTAppend name="bus-width" type="number" parentlabel="hps_0_sdmmc" val="4"/>
-<DTAppend name="device-width" parentlabel="hps_0_sdmmc" action="remove"/>
-<DTAppend name="bank-width" parentlabel="hps_0_sdmmc" action="remove"/>
-<DTAppend name="compatible" type="string" parentlabel="hps_0_sdmmc" val="altr,socfpga-dw-mshc"/>
+<DTAppend name="compatible" type="string" parentlabel="hps_0_sdmmc" val="altr,socfpga-dw-mshc" action="replace"/>
 <DTAppend name="altr,dw-mshc-ciu-div" type="number" parentlabel="hps_0_sdmmc" val="3"/>
 <DTAppend name="altr,dw-mshc-sdr-timing"  parentlabel="hps_0_sdmmc" >
 <val type="number">0</val>
 <val type="number">3</val>
 </DTAppend>
-<DTAppend name="supports-highspeed"  parentlabel="hps_0_sdmmc" />
 <DTAppend name="slot@0" type="node" parentlabel="hps_0_sdmmc" newlabel="slot_0"/>
 <DTAppend name="reg" type="number" parentlabel="slot_0" val="0"/>
 <DTAppend name="bus-width" type="number" parentlabel="slot_0" val="4"/>
-
-<DTAppend name="reg" type="number" parentlabel="slot_0" val="0"/>
-<DTAppend name="bus-width" type="number" parentlabel="slot_0" val="4"/>
-<DTAppend name="cd" parentlabel="hps_0_sdmmc" >
-<val type="phandle">hps_0_gpio1_porta</val>
-<val type="number">18</val>
-<val type="number">0</val>
-</DTAppend>
-<DTAppend name="cd-gpios" parentlabel="hps_0_sdmmc" >
-<val type="phandle">hps_0_gpio1_porta</val>
-<val type="number">18</val>
-<val type="number">0</val>
-</DTAppend>
-
-<DTAppend name="vmmc-supply" type="phandle" parentlabel="hps_0_sdmmc" val="regulator_3_3v"/>
-<DTAppend name="vqmmc-supply" type="phandle" parentlabel="hps_0_sdmmc" val="regulator_3_3v"/>
-
-
-<DTAppend name="vcc3p3-regulator" type="node" parentlabel="sopc0" newlabel="regulator_3_3v" />
-<DTAppend name="compatible" type="string" parentlabel="regulator_3_3v" val="regulator-fixed" />
-<DTAppend name="regulator-name" type="string" parentlabel="regulator_3_3v" val="3.3V" />
-<DTAppend name="regulator-min-microvolt" type="number" parentlabel="regulator_3_3v" val="3300000" />
-<DTAppend name="regulator-max-microvolt" type="number" parentlabel="regulator_3_3v" val="3300000" />
 
 <DTAppend name="#address-cells" type="number" parentlabel="hps_0_qspi" val="1"/>
 <DTAppend name="#size-cells" type="number" parentlabel="hps_0_qspi" val="0"/>
@@ -146,25 +99,26 @@ these aliases allows seamless support of multiple emacs
 <DTAppend name="#size-cells" type="number" parentlabel="flash0" val="1"/>
 <DTAppend name="reg" type="number" parentlabel="flash0" val="0"/>
 <DTAppend name="spi-max-frequency" type="number" parentlabel="flash0" val="100000000"/>
-<DTAppend name="m25p,fast-read" type="bool" parentlabel="flash0" val="true"/>
 <DTAppend name="page-size" type="number" parentlabel="flash0" val="256"/>
 <DTAppend name="block-size" type="number" parentlabel="flash0" val="16"/>
+<DTAppend name="m25p,fast-read" type="bool" parentlabel="flash0" val="true"/>
+<DTAppend name="read-delay" type="number" parentlabel="flash0" val="4"/>
 <DTAppend name="tshsl-ns" type="number" parentlabel="flash0" val="50"/>
 <DTAppend name="tsd2d-ns" type="number" parentlabel="flash0" val="50"/>
 <DTAppend name="tchsh-ns" type="number" parentlabel="flash0" val="4"/>
 <DTAppend name="tslch-ns" type="number" parentlabel="flash0" val="4"/>
-<DTAppend name="cdns,page-size" type="number" parentlabel="flash0" val="256"/>
-<DTAppend name="cdns,block-size" type="number" parentlabel="flash0" val="16"/>
-<DTAppend name="cdns,tshsl-ns" type="number" parentlabel="flash0" val="50"/>
-<DTAppend name="cdns,tsd2d-ns" type="number" parentlabel="flash0" val="50"/>
-<DTAppend name="cdns,tchsh-ns" type="number" parentlabel="flash0" val="4"/>
-<DTAppend name="cdns,tslch-ns" type="number" parentlabel="flash0" val="4"/>
 
 <DTAppend name="spidev@0" type="node" parentlabel="hps_0_spim0" newlabel="spidev0"/>
-<DTAppend name="compatible" type="string" parentlabel="spidev0" val="rohm,dh2228fv"/>
+<DTAppend name="compatible" type="string" parentlabel="spidev0" val="spidev"/>
 <DTAppend name="reg" type="number" parentlabel="spidev0" val="0"/>
 <DTAppend name="spi-max-frequency" type="number" parentlabel="spidev0" val="100000000"/>
 <DTAppend name="enable-dma" type="number" parentlabel="spidev0" val="1"/>
+
+<DTAppend name="spidev@0" type="node" parentlabel="hps_0_spim1" newlabel="spidev1"/>
+<DTAppend name="compatible" type="string" parentlabel="spidev1" val="spidev"/>
+<DTAppend name="reg" type="number" parentlabel="spidev1" val="0"/>
+<DTAppend name="spi-max-frequency" type="number" parentlabel="spidev1" val="100000000"/>
+<DTAppend name="enable-dma" type="number" parentlabel="spidev1" val="1"/>
 
 <DTAppend name="leds" type="node" parentlabel="sopc0" newlabel="soc_leds"/>
 <DTAppend name="compatible" type="string" parentlabel="soc_leds" val="gpio-leds"/>
@@ -299,13 +253,6 @@ these aliases allows seamless support of multiple emacs
 	<val type="number">98</val>
 </DTAppend>
 
-<DTAppend name="fpgabridge@3" type="node" parentlabel="sopc0" newlabel="fpgabridge3"/>
-<DTAppend name="compatible" type="string" parentlabel="fpgabridge3" val="altr,socfpga-fpga2sdram-bridge"/>
-<DTAppend name="label" type="string" parentlabel="fpgabridge3" val="fpga2sdram"/>
-<DTAppend name="read-ports-mask" type="hex" parentlabel="fpgabridge3" val="0xf"/>
-<DTAppend name="write-ports-mask" type="hex" parentlabel="fpgabridge3" val="0xf"/>
-<DTAppend name="cmd-ports-mask" type="hex" parentlabel="fpgabridge3" val="0x1"/>
-
 <DTAppend name="usbphy@0" type="node" parentlabel="sopc0" newlabel="usbphy0" />
 <DTAppend name="#phy-cells" type="number" val="0" parentlabel="usbphy0" />
 <DTAppend name="compatible" type="string" val="usb-nop-xceiv" parentlabel="usbphy0" />
@@ -316,7 +263,4 @@ these aliases allows seamless support of multiple emacs
 <Chosen>
         <Bootargs val="console=ttyS0,115200"></Bootargs>
 </Chosen>
-
-<DTAppend name="clocks" type="phandle" parentlabel="hps_0_fpgamgr" val="l4_mp_clk"/>
-
 </BoardInfo>

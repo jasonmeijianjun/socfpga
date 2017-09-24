@@ -55,7 +55,6 @@
     <config name='gpio_db_clk_hz' value='32000' />
     <config name='l4_mp_clk_hz' value='100000000' />
     <config name='l4_sp_clk_hz' value='100000000' />
-    <config name='sdram_pll_c5' value='5' />
   </system>
   <fpga_interfaces>
     <config name='F2H_AXI_SLAVE' used='true' />
@@ -148,12 +147,12 @@
     <pin_mux name='GENERALIO10' choice='SPIM0_MOSI' value='3' />
     <pin_mux name='GENERALIO11' choice='SPIM0_MISO' value='3' />
     <pin_mux name='GENERALIO12' choice='SPIM0_SS0' value='3' />
-    <pin_mux name='GENERALIO17' choice='CAN0_RX' value='3' />
-    <pin_mux name='GENERALIO18' choice='CAN0_TX' value='3' />
+    <pin_mux name='GENERALIO17' choice='UART0_RX' value='2' />
+    <pin_mux name='GENERALIO18' choice='UART0_TX' value='2' />
     <pin_mux name='GENERALIO15' choice='I2C0_SDA' value='3' />
     <pin_mux name='GENERALIO16' choice='I2C0_SCL' value='3' />
-    <pin_mux name='GENERALIO13' choice='UART0_RX' value='3' />
-    <pin_mux name='GENERALIO14' choice='UART0_TX' value='3' />
+    <pin_mux name='GENERALIO13' choice='CAN0_RX' value='2' />
+    <pin_mux name='GENERALIO14' choice='CAN0_TX' value='2' />
     <pin_mux name='GENERALIO0' choice='TRACE_CLK' value='3' />
     <pin_mux name='GENERALIO1' choice='TRACE_D0' value='3' />
     <pin_mux name='GENERALIO2' choice='TRACE_D1' value='3' />
