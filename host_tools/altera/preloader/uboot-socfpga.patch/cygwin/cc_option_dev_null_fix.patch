@@ -1,0 +1,21 @@
+diff -rupN uboot-socfpga.orig/config.mk uboot-socfpga/config.mk
+--- uboot-socfpga.orig/config.mk	2013-01-07 23:06:01.455611600 -0800
++++ uboot-socfpga/config.mk	2013-01-07 23:19:08.341611600 -0800
+@@ -110,10 +110,16 @@ HOSTCFLAGS	+= -pedantic
+ CC_OPTIONS_CACHE_FILE := $(OBJTREE)/include/generated/cc_options.mk
+ CC_TEST_OFILE := $(OBJTREE)/include/generated/cc_test_file.o
+ 
++ifeq ($(HOSTOS),cygwin)
++CC_TEST_IFILE := NUL
++else
++CC_TEST_IFILE := /dev/null
++endif
++
+ -include $(CC_OPTIONS_CACHE_FILE)
+ 
+ cc-option-sys = $(shell mkdir -p $(dir $(CC_TEST_OFILE)); \
+-		if $(CC) $(CFLAGS) $(1) -S -xc /dev/null -o $(CC_TEST_OFILE) \
++		if $(CC) $(CFLAGS) $(1) -S -xc $(CC_TEST_IFILE) -o $(CC_TEST_OFILE) \
+ 		> /dev/null 2>&1; then \
+ 		echo 'CC_OPTIONS += $(strip $1)' >> $(CC_OPTIONS_CACHE_FILE); \
+ 		echo "$(1)"; fi)

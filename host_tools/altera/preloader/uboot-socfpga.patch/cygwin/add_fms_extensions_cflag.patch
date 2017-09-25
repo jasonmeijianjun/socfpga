@@ -1,0 +1,12 @@
+diff -rupN uboot-socfpga.orig/config.mk uboot-socfpga/config.mk
+--- uboot-socfpga.orig/config.mk	2014-01-24 16:03:50.334170200 -0800
++++ uboot-socfpga/config.mk	2014-01-24 16:03:58.429979700 -0800
+@@ -94,7 +94,7 @@ HOSTCC		= gcc
+ endif
+ 
+ ifeq ($(HOSTOS),cygwin)
+-HOSTCFLAGS	+= -ansi
++HOSTCFLAGS	+= -fms-extensions
+ endif
+ 
+ # We build some files with extra pedantic flags to try to minimize things

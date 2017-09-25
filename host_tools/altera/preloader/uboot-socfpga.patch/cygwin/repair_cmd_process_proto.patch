@@ -1,0 +1,12 @@
+diff -rupN uboot-socfpga.orig/include/command.h uboot-socfpga/include/command.h
+--- uboot-socfpga.orig/include/command.h	2014-01-24 16:12:21.905322200 -0800
++++ uboot-socfpga/include/command.h	2014-01-24 16:12:25.959727600 -0800
+@@ -141,7 +141,7 @@ enum command_ret_t {
+  *			is left unchanged.
+  * @return 0 if the command succeeded, 1 if it failed
+  */
+-int cmd_process(int flag, int argc, char * const argv[],
++enum command_ret_t cmd_process(int flag, int argc, char * const argv[],
+ 			       int *repeatable);
+ 
+ #endif	/* __ASSEMBLY__ */

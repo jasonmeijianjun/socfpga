@@ -1,0 +1,16 @@
+diff -rupN uboot-socfpga.orig/tools/mkenvimage.c uboot-socfpga/tools/mkenvimage.c
+--- uboot-socfpga.orig/tools/mkenvimage.c	2014-01-24 16:05:23.570492900 -0800
++++ uboot-socfpga/tools/mkenvimage.c	2014-01-24 16:05:24.267562600 -0800
+@@ -38,7 +38,12 @@
+ #include <libgen.h>
+ #include <sys/types.h>
+ #include <sys/stat.h>
++
++#ifdef __MINGW32__
++#include "mingw_support.h"
++#else
+ #include <sys/mman.h>
++#endif
+ 
+ #include "compiler.h"
+ #include <u-boot/crc.h>

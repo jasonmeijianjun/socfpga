@@ -1,0 +1,45 @@
+diff -rupN uboot-socfpga.orig/Makefile uboot-socfpga/Makefile
+--- uboot-socfpga.orig/Makefile	2013-01-06 22:14:39.860887200 -0800
++++ uboot-socfpga/Makefile	2013-01-06 22:21:37.579654900 -0800
+@@ -626,6 +626,9 @@ $(obj)include/autoconf.mk.dep: $(obj)inc
+ 	: Generate the dependancies ; \
+ 	$(CC) -x c -DDO_DEPS_ONLY -M $(CFLAGS) $(CPPFLAGS) \
+ 		-MQ $(obj)include/autoconf.mk include/common.h > $@
++ifeq ($(HOSTOS),cygwin)
++	@sed -i -e 's,\\\([^ ]\),/\1,g' -e 's,\([a-zA-Z]\)[:]/,/cygdrive/\1/,g' $@
++endif
+ 
+ $(obj)include/autoconf.mk: $(obj)include/config.h
+ 	@$(XECHO) Generating $@ ; \
+diff -rupN uboot-socfpga.orig/rules.mk uboot-socfpga/rules.mk
+--- uboot-socfpga.orig/rules.mk	2013-01-06 22:14:44.128313900 -0800
++++ uboot-socfpga/rules.mk	2013-01-06 22:33:15.342424200 -0800
+@@ -34,6 +34,8 @@ OTHER_SRCS := $(filter-out $(notdir $(SR
+ # This is a list of dependency files to generate
+ DEPS := $(basename $(patsubst %,$(obj).depend.%,$(PWD_SRCS)))
+ 
++CYGPATH_REPAIR = @sed -i -e 's,\\\([^ ]\),/\1,g' -e 's,\([a-zA-Z]\)[:]/,/cygdrive/\1/,g' $@
++
+ # Join all the dependencies into a single file, in three parts
+ #	1 .Concatenate all the generated depend files together
+ #	2. Add in the deps from OTHER_SRCS which we couldn't process
+@@ -49,6 +51,7 @@ $(obj).depend:	$(src)Makefile $(TOPDIR)/
+ 		g=`basename $$f | sed -e 's/\(.*\)\.[[:alnum:]_]/\1.o/'`; \
+ 		$(HOSTCC) -M $(HOSTCPPFLAGS) -MQ $(obj)$$g $$f >> $@ ; \
+ 	done
++	$(CYGPATH_REPAIR)
+ 
+ MAKE_DEPEND = $(CC) -M $(CPPFLAGS) $(EXTRA_CPPFLAGS_DEP) \
+ 		-MQ $(addsuffix .o,$(obj)$(basename $<)) $< >$@
+@@ -56,9 +59,11 @@ MAKE_DEPEND = $(CC) -M $(CPPFLAGS) $(EXT
+ 
+ $(obj).depend.%:	%.c
+ 	$(MAKE_DEPEND)
++	$(CYGPATH_REPAIR)
+ 
+ $(obj).depend.%:	%.S
+ 	$(MAKE_DEPEND)
++	$(CYGPATH_REPAIR)
+ 
+ $(HOSTOBJS): $(obj)%.o: %.c
+ 	$(HOSTCC) $(HOSTCFLAGS) $(HOSTCFLAGS_$(@F)) $(HOSTCFLAGS_$(BCURDIR)) -o $@ $< -c

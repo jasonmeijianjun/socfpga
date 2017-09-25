@@ -1,0 +1,343 @@
+diff -rupN uboot-socfpga.orig/include/image.h uboot-socfpga/include/image.h
+--- uboot-socfpga.orig/include/image.h	2014-01-24 16:13:48.529983800 -0800
++++ uboot-socfpga/include/image.h	2014-01-24 16:13:51.669297700 -0800
+@@ -369,13 +369,13 @@ int boot_get_kbd(struct lmb *lmb, bd_t *
+ /*******************************************************************/
+ /* Legacy format specific code (prefixed with image_) */
+ /*******************************************************************/
+-static inline uint32_t image_get_header_size(void)
++static __inline__ uint32_t image_get_header_size(void)
+ {
+ 	return (sizeof(image_header_t));
+ }
+ 
+ #define image_get_hdr_l(f) \
+-	static inline uint32_t image_get_##f(const image_header_t *hdr) \
++	static __inline__ uint32_t image_get_##f(const image_header_t *hdr) \
+ 	{ \
+ 		return uimage_to_cpu(hdr->ih_##f); \
+ 	}
+@@ -388,7 +388,7 @@ image_get_hdr_l(ep)		/* image_get_ep */
+ image_get_hdr_l(dcrc)		/* image_get_dcrc */
+ 
+ #define image_get_hdr_b(f) \
+-	static inline uint8_t image_get_##f(const image_header_t *hdr) \
++	static __inline__ uint8_t image_get_##f(const image_header_t *hdr) \
+ 	{ \
+ 		return hdr->ih_##f; \
+ 	}
+@@ -397,12 +397,12 @@ image_get_hdr_b(arch)		/* image_get_arch
+ image_get_hdr_b(type)		/* image_get_type */
+ image_get_hdr_b(comp)		/* image_get_comp */
+ 
+-static inline char *image_get_name(const image_header_t *hdr)
++static __inline__ char *image_get_name(const image_header_t *hdr)
+ {
+ 	return (char *)hdr->ih_name;
+ }
+ 
+-static inline uint32_t image_get_data_size(const image_header_t *hdr)
++static __inline__ uint32_t image_get_data_size(const image_header_t *hdr)
+ {
+ 	return image_get_size(hdr);
+ }
+@@ -418,22 +418,22 @@ static inline uint32_t image_get_data_si
+  * returns:
+  *     image payload data start address
+  */
+-static inline ulong image_get_data(const image_header_t *hdr)
++static __inline__ ulong image_get_data(const image_header_t *hdr)
+ {
+ 	return ((ulong)hdr + image_get_header_size());
+ }
+ 
+-static inline uint32_t image_get_image_size(const image_header_t *hdr)
++static __inline__ uint32_t image_get_image_size(const image_header_t *hdr)
+ {
+ 	return (image_get_size(hdr) + image_get_header_size());
+ }
+-static inline ulong image_get_image_end(const image_header_t *hdr)
++static __inline__ ulong image_get_image_end(const image_header_t *hdr)
+ {
+ 	return ((ulong)hdr + image_get_image_size(hdr));
+ }
+ 
+ #define image_set_hdr_l(f) \
+-	static inline void image_set_##f(image_header_t *hdr, uint32_t val) \
++	static __inline__ void image_set_##f(image_header_t *hdr, uint32_t val) \
+ 	{ \
+ 		hdr->ih_##f = cpu_to_uimage(val); \
+ 	}
+@@ -446,7 +446,7 @@ image_set_hdr_l(ep)		/* image_set_ep */
+ image_set_hdr_l(dcrc)		/* image_set_dcrc */
+ 
+ #define image_set_hdr_b(f) \
+-	static inline void image_set_##f(image_header_t *hdr, uint8_t val) \
++	static __inline__ void image_set_##f(image_header_t *hdr, uint8_t val) \
+ 	{ \
+ 		hdr->ih_##f = val; \
+ 	}
+@@ -455,7 +455,7 @@ image_set_hdr_b(arch)		/* image_set_arch
+ image_set_hdr_b(type)		/* image_set_type */
+ image_set_hdr_b(comp)		/* image_set_comp */
+ 
+-static inline void image_set_name(image_header_t *hdr, const char *name)
++static __inline__ void image_set_name(image_header_t *hdr, const char *name)
+ {
+ 	strncpy(image_get_name(hdr), name, IH_NMLEN);
+ }
+@@ -469,19 +469,19 @@ phys_size_t getenv_bootm_mapsize(void);
+ void memmove_wd(void *to, void *from, size_t len, ulong chunksz);
+ #endif
+ 
+-static inline int image_check_magic(const image_header_t *hdr)
++static __inline__ int image_check_magic(const image_header_t *hdr)
+ {
+ 	return (image_get_magic(hdr) == IH_MAGIC);
+ }
+-static inline int image_check_type(const image_header_t *hdr, uint8_t type)
++static __inline__ int image_check_type(const image_header_t *hdr, uint8_t type)
+ {
+ 	return (image_get_type(hdr) == type);
+ }
+-static inline int image_check_arch(const image_header_t *hdr, uint8_t arch)
++static __inline__ int image_check_arch(const image_header_t *hdr, uint8_t arch)
+ {
+ 	return (image_get_arch(hdr) == arch);
+ }
+-static inline int image_check_os(const image_header_t *hdr, uint8_t os)
++static __inline__ int image_check_os(const image_header_t *hdr, uint8_t os)
+ {
+ 	return (image_get_os(hdr) == os);
+ }
+@@ -493,7 +493,7 @@ void image_multi_getimg(const image_head
+ void image_print_contents(const void *hdr);
+ 
+ #ifndef USE_HOSTCC
+-static inline int image_check_target_arch(const image_header_t *hdr)
++static __inline__ int image_check_target_arch(const image_header_t *hdr)
+ {
+ #ifndef IH_ARCH_DEFAULT
+ # error "please define IH_ARCH_DEFAULT in your arch asm/u-boot.h"
+@@ -552,7 +552,7 @@ void fit_image_print_hash(const void *fi
+  * returns:
+  *     size of the FIT image (blob) in memory
+  */
+-static inline ulong fit_get_size(const void *fit)
++static __inline__ ulong fit_get_size(const void *fit)
+ {
+ 	return fdt_totalsize(fit);
+ }
+@@ -564,7 +564,7 @@ static inline ulong fit_get_size(const v
+  * returns:
+  *     end address of the FIT image (blob) in memory
+  */
+-static inline ulong fit_get_end(const void *fit)
++static __inline__ ulong fit_get_end(const void *fit)
+ {
+ 	return (ulong)fit + fdt_totalsize(fit);
+ }
+@@ -577,7 +577,7 @@ static inline ulong fit_get_end(const vo
+  *     NULL, on error
+  *     pointer to node name, on success
+  */
+-static inline const char *fit_get_name(const void *fit_hdr,
++static __inline__ const char *fit_get_name(const void *fit_hdr,
+ 		int noffset, int *len)
+ {
+ 	return fdt_get_name(fit_hdr, noffset, len);
+@@ -626,7 +626,7 @@ int fit_conf_get_fdt_node(const void *fi
+ void fit_conf_print(const void *fit, int noffset, const char *p);
+ 
+ #ifndef USE_HOSTCC
+-static inline int fit_image_check_target_arch(const void *fdt, int node)
++static __inline__ int fit_image_check_target_arch(const void *fdt, int node)
+ {
+ 	return fit_image_check_arch(fdt, node, IH_ARCH_DEFAULT);
+ }
+diff -rupN uboot-socfpga.orig/include/libfdt.h uboot-socfpga/include/libfdt.h
+--- uboot-socfpga.orig/include/libfdt.h	2014-01-24 16:13:48.564987300 -0800
++++ uboot-socfpga/include/libfdt.h	2014-01-24 16:13:51.687299500 -0800
+@@ -123,7 +123,7 @@
+ /**********************************************************************/
+ 
+ const void *fdt_offset_ptr(const void *fdt, int offset, unsigned int checklen);
+-static inline void *fdt_offset_ptr_w(void *fdt, int offset, int checklen)
++static __inline__ void *fdt_offset_ptr_w(void *fdt, int offset, int checklen)
+ {
+ 	return (void *)(uintptr_t)fdt_offset_ptr(fdt, offset, checklen);
+ }
+@@ -154,7 +154,7 @@ int fdt_next_node(const void *fdt, int o
+ #define fdt_size_dt_struct(fdt)		(fdt_get_header(fdt, size_dt_struct))
+ 
+ #define __fdt_set_hdr(name) \
+-	static inline void fdt_set_##name(void *fdt, uint32_t val) \
++	static __inline__ void fdt_set_##name(void *fdt, uint32_t val) \
+ 	{ \
+ 		struct fdt_header *fdth = (struct fdt_header*)fdt; \
+ 		fdth->name = cpu_to_fdt32(val); \
+@@ -456,7 +456,7 @@ const struct fdt_property *fdt_get_prope
+  */
+ const struct fdt_property *fdt_get_property(const void *fdt, int nodeoffset,
+ 					    const char *name, int *lenp);
+-static inline struct fdt_property *fdt_get_property_w(void *fdt, int nodeoffset,
++static __inline__ struct fdt_property *fdt_get_property_w(void *fdt, int nodeoffset,
+ 						      const char *name,
+ 						      int *lenp)
+ {
+@@ -541,7 +541,7 @@ const void *fdt_getprop_namelen(const vo
+  */
+ const void *fdt_getprop(const void *fdt, int nodeoffset,
+ 			const char *name, int *lenp);
+-static inline void *fdt_getprop_w(void *fdt, int nodeoffset,
++static __inline__ void *fdt_getprop_w(void *fdt, int nodeoffset,
+ 				  const char *name, int *lenp)
+ {
+ 	return (void *)(uintptr_t)fdt_getprop(fdt, nodeoffset, name, lenp);
+@@ -879,7 +879,7 @@ int fdt_setprop_inplace(void *fdt, int n
+  *	-FDT_ERR_BADSTRUCTURE,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_setprop_inplace_u32(void *fdt, int nodeoffset,
++static __inline__ int fdt_setprop_inplace_u32(void *fdt, int nodeoffset,
+ 					  const char *name, uint32_t val)
+ {
+ 	val = cpu_to_fdt32(val);
+@@ -914,7 +914,7 @@ static inline int fdt_setprop_inplace_u3
+  *	-FDT_ERR_BADSTRUCTURE,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_setprop_inplace_u64(void *fdt, int nodeoffset,
++static __inline__ int fdt_setprop_inplace_u64(void *fdt, int nodeoffset,
+ 					  const char *name, uint64_t val)
+ {
+ 	val = cpu_to_fdt64(val);
+@@ -926,7 +926,7 @@ static inline int fdt_setprop_inplace_u6
+  *
+  * This is an alternative name for fdt_setprop_inplace_u32()
+  */
+-static inline int fdt_setprop_inplace_cell(void *fdt, int nodeoffset,
++static __inline__ int fdt_setprop_inplace_cell(void *fdt, int nodeoffset,
+ 					   const char *name, uint32_t val)
+ {
+ 	return fdt_setprop_inplace_u32(fdt, nodeoffset, name, val);
+@@ -991,17 +991,17 @@ int fdt_add_reservemap_entry(void *fdt,
+ int fdt_finish_reservemap(void *fdt);
+ int fdt_begin_node(void *fdt, const char *name);
+ int fdt_property(void *fdt, const char *name, const void *val, int len);
+-static inline int fdt_property_u32(void *fdt, const char *name, uint32_t val)
++static __inline__ int fdt_property_u32(void *fdt, const char *name, uint32_t val)
+ {
+ 	val = cpu_to_fdt32(val);
+ 	return fdt_property(fdt, name, &val, sizeof(val));
+ }
+-static inline int fdt_property_u64(void *fdt, const char *name, uint64_t val)
++static __inline__ int fdt_property_u64(void *fdt, const char *name, uint64_t val)
+ {
+ 	val = cpu_to_fdt64(val);
+ 	return fdt_property(fdt, name, &val, sizeof(val));
+ }
+-static inline int fdt_property_cell(void *fdt, const char *name, uint32_t val)
++static __inline__ int fdt_property_cell(void *fdt, const char *name, uint32_t val)
+ {
+ 	return fdt_property_u32(fdt, name, val);
+ }
+@@ -1151,7 +1151,7 @@ int fdt_setprop(void *fdt, int nodeoffse
+  *	-FDT_ERR_BADLAYOUT,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_setprop_u32(void *fdt, int nodeoffset, const char *name,
++static __inline__ int fdt_setprop_u32(void *fdt, int nodeoffset, const char *name,
+ 				  uint32_t val)
+ {
+ 	val = cpu_to_fdt32(val);
+@@ -1186,7 +1186,7 @@ static inline int fdt_setprop_u32(void *
+  *	-FDT_ERR_BADLAYOUT,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_setprop_u64(void *fdt, int nodeoffset, const char *name,
++static __inline__ int fdt_setprop_u64(void *fdt, int nodeoffset, const char *name,
+ 				  uint64_t val)
+ {
+ 	val = cpu_to_fdt64(val);
+@@ -1198,7 +1198,7 @@ static inline int fdt_setprop_u64(void *
+  *
+  * This is an alternative name for fdt_setprop_u32()
+  */
+-static inline int fdt_setprop_cell(void *fdt, int nodeoffset, const char *name,
++static __inline__ int fdt_setprop_cell(void *fdt, int nodeoffset, const char *name,
+ 				   uint32_t val)
+ {
+ 	return fdt_setprop_u32(fdt, nodeoffset, name, val);
+@@ -1293,7 +1293,7 @@ int fdt_appendprop(void *fdt, int nodeof
+  *	-FDT_ERR_BADLAYOUT,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_appendprop_u32(void *fdt, int nodeoffset,
++static __inline__ int fdt_appendprop_u32(void *fdt, int nodeoffset,
+ 				     const char *name, uint32_t val)
+ {
+ 	val = cpu_to_fdt32(val);
+@@ -1328,7 +1328,7 @@ static inline int fdt_appendprop_u32(voi
+  *	-FDT_ERR_BADLAYOUT,
+  *	-FDT_ERR_TRUNCATED, standard meanings
+  */
+-static inline int fdt_appendprop_u64(void *fdt, int nodeoffset,
++static __inline__ int fdt_appendprop_u64(void *fdt, int nodeoffset,
+ 				     const char *name, uint64_t val)
+ {
+ 	val = cpu_to_fdt64(val);
+@@ -1340,7 +1340,7 @@ static inline int fdt_appendprop_u64(voi
+  *
+  * This is an alternative name for fdt_appendprop_u32()
+  */
+-static inline int fdt_appendprop_cell(void *fdt, int nodeoffset,
++static __inline__ int fdt_appendprop_cell(void *fdt, int nodeoffset,
+ 				      const char *name, uint32_t val)
+ {
+ 	return fdt_appendprop_u32(fdt, nodeoffset, name, val);
+diff -rupN uboot-socfpga.orig/lib/libfdt/fdt_rw.c uboot-socfpga/lib/libfdt/fdt_rw.c
+--- uboot-socfpga.orig/lib/libfdt/fdt_rw.c	2014-01-24 16:13:49.140044800 -0800
++++ uboot-socfpga/lib/libfdt/fdt_rw.c	2014-01-24 16:13:51.702301000 -0800
+@@ -93,7 +93,7 @@ static int _fdt_rw_check_header(void *fd
+ 			return err; \
+ 	}
+ 
+-static inline int _fdt_data_size(void *fdt)
++static __inline__ int _fdt_data_size(void *fdt)
+ {
+ 	return fdt_off_dt_strings(fdt) + fdt_size_dt_strings(fdt);
+ }
+diff -rupN uboot-socfpga.orig/lib/libfdt/libfdt_internal.h uboot-socfpga/lib/libfdt/libfdt_internal.h
+--- uboot-socfpga.orig/lib/libfdt/libfdt_internal.h	2014-01-24 16:13:49.146045400 -0800
++++ uboot-socfpga/lib/libfdt/libfdt_internal.h	2014-01-24 16:13:51.719302700 -0800
+@@ -67,17 +67,17 @@ int _fdt_check_prop_offset(const void *f
+ const char *_fdt_find_string(const char *strtab, int tabsize, const char *s);
+ int _fdt_node_end_offset(void *fdt, int nodeoffset);
+ 
+-static inline const void *_fdt_offset_ptr(const void *fdt, int offset)
++static __inline__ const void *_fdt_offset_ptr(const void *fdt, int offset)
+ {
+ 	return (const char *)fdt + fdt_off_dt_struct(fdt) + offset;
+ }
+ 
+-static inline void *_fdt_offset_ptr_w(void *fdt, int offset)
++static __inline__ void *_fdt_offset_ptr_w(void *fdt, int offset)
+ {
+ 	return (void *)(uintptr_t)_fdt_offset_ptr(fdt, offset);
+ }
+ 
+-static inline const struct fdt_reserve_entry *_fdt_mem_rsv(const void *fdt, int n)
++static __inline__ const struct fdt_reserve_entry *_fdt_mem_rsv(const void *fdt, int n)
+ {
+ 	const struct fdt_reserve_entry *rsv_table =
+ 		(const struct fdt_reserve_entry *)
+@@ -85,7 +85,7 @@ static inline const struct fdt_reserve_e
+ 
+ 	return rsv_table + n;
+ }
+-static inline struct fdt_reserve_entry *_fdt_mem_rsv_w(void *fdt, int n)
++static __inline__ struct fdt_reserve_entry *_fdt_mem_rsv_w(void *fdt, int n)
+ {
+ 	return (void *)(uintptr_t)_fdt_mem_rsv(fdt, n);
+ }
