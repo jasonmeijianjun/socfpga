@@ -15,7 +15,8 @@
 
 PRELOADER_SETTINGS_DIR := ../../hps_isw_handoff/soc_system_hps_0
 
-TGZ := ./uboot-socfpga.git.tar.gz
+TGZ := ../../../host_tools/altera/preloader/uboot-socfpga.tar.gz
+
 #CROSS_COMPILE := arm-altera-eabi-
 
 DEVICE_FAMILY := cyclone5
@@ -189,8 +190,8 @@ $(PRELOADER.BINARY): $(CONFIG)
 mkpimage-spl: $(PRELOADER.MKPIMAGE_BINARY)
 
 $(PRELOADER.MKPIMAGE_BINARY): $(PRELOADER.BINARY)
-#	/opt/sources/github/socfpga.git/host_tools/altera/mkpimage/mkpimage --header-version 0 -o $@ $< $< $< $<
 	../../../host_tools/altera/mkpimage/mkpimage --header-version 0 -o $@ $< $< $< $<
+
 .PHONY: tools
 tools: $(CONFIG)
 	$(MAKE) $(MAKE_ARGS) -C $(PRELOADER_SRC_DIR) tools
