@@ -13,7 +13,7 @@
 #define CONFIG_HW_WATCHDOG
 
 /* Memory configurations */
-#define PHYS_SDRAM_1_SIZE		0x20000000	/* 500MiB */
+#define PHYS_SDRAM_1_SIZE		0x40000000	/* 1024MiB */
 
 /* Booting Linux */
 #define CONFIG_BOOTFILE		"zImage"
@@ -115,7 +115,7 @@
 
 #endif
 
-#define CONFIG_BOOTCOMMAND "run usb_reset; run fpga_cfg; run hdmi_init; run distro_bootcmd"
+#define CONFIG_BOOTCOMMAND "run fpga_cfg; run distro_bootcmd"
 
 /* The rest of the configuration is shared */
 #include <configs/socfpga_common.h>
