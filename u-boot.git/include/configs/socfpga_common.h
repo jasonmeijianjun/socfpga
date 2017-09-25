@@ -349,9 +349,7 @@ unsigned int cm_get_qspi_controller_clk_hz(void);
 #endif
 
 #define BOOT_TARGET_DEVICES(func) \
-       func(MMC, mmc, 0) \
-       BOOT_TARGET_DEVICES_PXE(func) \
-       func(DHCP, dhcp, na) 
+       func(MMC, mmc, 0)  
 
 #include <config_distro_bootcmd.h>
 
