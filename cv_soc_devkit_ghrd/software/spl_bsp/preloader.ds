@@ -9,8 +9,9 @@
 #
 # stop processor if running
 #
-reset system
 stop
+wait 5s
+reset system
 wait 5s
 
 set semihosting enabled 0

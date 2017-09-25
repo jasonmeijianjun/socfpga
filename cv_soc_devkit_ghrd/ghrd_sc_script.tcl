@@ -1,12 +1,12 @@
 # setting parameter for system infomation ######################################
 # this section must be modified to represent the targeted memory map of the design
-set sysid_base 0x60008
-set pio_led_base 0x60040
-set pio_dipsw_base 0x60080
-set pio_button_base 0x600c0
+set sysid_base 0x10000
+set pio_led_base 0x10040
+set pio_dipsw_base 0x10080
+set pio_button_base 0x100c0
 set uart_base 0x10100
-set intr_capture_base 0x70000
-set juart_base 0x60000
+set intr_capture_base 0x30000
+set juart_base 0x20000
 set onchip_mem_base 0x0
 set hps_led_base 0xff709000
 
