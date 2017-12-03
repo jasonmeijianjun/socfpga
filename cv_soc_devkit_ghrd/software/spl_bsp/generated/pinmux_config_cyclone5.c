@@ -64,24 +64,24 @@ unsigned long sys_mgr_init_table[CONFIG_HPS_PINMUX_NUM] = {
 	3, /* FLASHIO10 */
 	3, /* FLASHIO11 */
 	0, /* GENERALIO0 */
-	1, /* GENERALIO1 */
-	1, /* GENERALIO2 */
-	1, /* GENERALIO3 */
-	1, /* GENERALIO4 */
+	0, /* GENERALIO1 */
+	0, /* GENERALIO2 */
+	0, /* GENERALIO3 */
+	0, /* GENERALIO4 */
 	0, /* GENERALIO5 */
 	0, /* GENERALIO6 */
 	0, /* GENERALIO7 */
 	0, /* GENERALIO8 */
-	0, /* GENERALIO9 */
+	3, /* GENERALIO9 */
 	3, /* GENERALIO10 */
 	3, /* GENERALIO11 */
 	3, /* GENERALIO12 */
 	3, /* GENERALIO13 */
 	3, /* GENERALIO14 */
-	1, /* GENERALIO15 */
-	1, /* GENERALIO16 */
-	3, /* GENERALIO17 */
-	3, /* GENERALIO18 */
+	3, /* GENERALIO15 */
+	3, /* GENERALIO16 */
+	0, /* GENERALIO17 */
+	0, /* GENERALIO18 */
 	0, /* GENERALIO19 */
 	0, /* GENERALIO20 */
 	0, /* GENERALIO21 */
