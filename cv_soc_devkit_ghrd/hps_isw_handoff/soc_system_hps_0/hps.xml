@@ -23,7 +23,7 @@
     <config name='periph_pll_c5' value='511' />
     <config name='usb_mp_clk_div' value='0' />
     <config name='spi_m_clk_div' value='0' />
-    <config name='can0_clk_div' value='1' />
+    <config name='can0_clk_div' value='4' />
     <config name='can1_clk_div' value='4' />
     <config name='gpio_db_clk_div' value='6249' />
     <config name='main_pll_vco_hz' value='1850000000' />
@@ -50,11 +50,12 @@
     <config name='sdmmc_clk_hz' value='200000000' />
     <config name='qspi_clk_hz' value='370000000' />
     <config name='spi_m_clk_hz' value='200000000' />
-    <config name='can0_clk_hz' value='100000000' />
+    <config name='can0_clk_hz' value='12500000' />
     <config name='can1_clk_hz' value='12500000' />
     <config name='gpio_db_clk_hz' value='32000' />
     <config name='l4_mp_clk_hz' value='100000000' />
     <config name='l4_sp_clk_hz' value='100000000' />
+    <config name='sdram_pll_c5' value='1' />
   </system>
   <fpga_interfaces>
     <config name='F2H_AXI_SLAVE' used='true' />
@@ -100,9 +101,9 @@
     <peripheral name='i2c1' used='false' />
     <peripheral name='i2c2' used='false' />
     <peripheral name='i2c3' used='false' />
-    <peripheral name='can0' used='true' />
+    <peripheral name='can0' used='false' />
     <peripheral name='can1' used='false' />
-    <peripheral name='trace' used='true' />
+    <peripheral name='trace' used='false' />
   </peripherals>
   <pin_muxes>
     <pin_mux name='MIXED1IO0' choice='EMAC1_TX_CLK' value='2' />
@@ -147,34 +148,26 @@
     <pin_mux name='GENERALIO10' choice='SPIM0_MOSI' value='3' />
     <pin_mux name='GENERALIO11' choice='SPIM0_MISO' value='3' />
     <pin_mux name='GENERALIO12' choice='SPIM0_SS0' value='3' />
-    <pin_mux name='GENERALIO17' choice='UART0_RX' value='2' />
-    <pin_mux name='GENERALIO18' choice='UART0_TX' value='2' />
+    <pin_mux name='GENERALIO13' choice='UART0_RX' value='3' />
+    <pin_mux name='GENERALIO14' choice='UART0_TX' value='3' />
     <pin_mux name='GENERALIO15' choice='I2C0_SDA' value='3' />
     <pin_mux name='GENERALIO16' choice='I2C0_SCL' value='3' />
-    <pin_mux name='GENERALIO13' choice='CAN0_RX' value='2' />
-    <pin_mux name='GENERALIO14' choice='CAN0_TX' value='2' />
-    <pin_mux name='GENERALIO0' choice='TRACE_CLK' value='3' />
-    <pin_mux name='GENERALIO1' choice='TRACE_D0' value='3' />
-    <pin_mux name='GENERALIO2' choice='TRACE_D1' value='3' />
-    <pin_mux name='GENERALIO3' choice='TRACE_D2' value='3' />
-    <pin_mux name='GENERALIO4' choice='TRACE_D3' value='3' />
-    <pin_mux name='GENERALIO5' choice='TRACE_D4' value='3' />
-    <pin_mux name='GENERALIO6' choice='TRACE_D5' value='3' />
-    <pin_mux name='GENERALIO7' choice='TRACE_D6' value='3' />
-    <pin_mux name='GENERALIO8' choice='TRACE_D7' value='3' />
+    <pin_mux name='EMACIO0' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX0' choice='GPIO' value='1' />
     <pin_mux name='EMACIO9' choice='GPIO/LoanIO' value='0' />
     <pin_mux name='GPLMUX9' choice='GPIO' value='1' />
     <pin_mux name='MIXED1IO21' choice='GPIO/LoanIO' value='0' />
     <pin_mux name='GPLMUX35' choice='GPIO' value='1' />
-    <pin_mux name='FLASHIO5' choice='GPIO/LoanIO' value='0' />
-    <pin_mux name='GPLMUX41' choice='GPIO' value='1' />
-    <pin_mux name='FLASHIO6' choice='GPIO/LoanIO' value='0' />
-    <pin_mux name='GPLMUX42' choice='GPIO' value='1' />
-    <pin_mux name='FLASHIO7' choice='GPIO/LoanIO' value='0' />
-    <pin_mux name='GPLMUX43' choice='GPIO' value='1' />
-    <pin_mux name='FLASHIO8' choice='GPIO/LoanIO' value='0' />
-    <pin_mux name='GPLMUX44' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX0' choice='GPIO' value='1' />
+    <pin_mux name='GENERALIO0' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX48' choice='GPIO' value='1' />
+    <pin_mux name='GENERALIO5' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX53' choice='GPIO' value='1' />
+    <pin_mux name='GENERALIO6' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX54' choice='GPIO' value='1' />
+    <pin_mux name='GENERALIO13' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX61' choice='GPIO' value='1' />
+    <pin_mux name='GENERALIO14' choice='GPIO/LoanIO' value='0' />
+    <pin_mux name='GPLMUX62' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX1' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX2' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX3' choice='GPIO' value='1' />
@@ -213,24 +206,23 @@
     <pin_mux name='GPLMUX38' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX39' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX40' choice='GPIO' value='1' />
+    <pin_mux name='GPLMUX41' choice='GPIO' value='1' />
+    <pin_mux name='GPLMUX42' choice='GPIO' value='1' />
+    <pin_mux name='GPLMUX43' choice='GPIO' value='1' />
+    <pin_mux name='GPLMUX44' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX45' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX46' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX47' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX48' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX49' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX50' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX51' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX52' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX53' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX54' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX55' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX56' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX57' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX58' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX59' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX60' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX61' choice='GPIO' value='1' />
-    <pin_mux name='GPLMUX62' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX63' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX64' choice='GPIO' value='1' />
     <pin_mux name='GPLMUX65' choice='GPIO' value='1' />
