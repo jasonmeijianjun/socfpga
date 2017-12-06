@@ -18,6 +18,7 @@ all:sd_image
 
 #2.make proloader
 preloader:
+	rm -rf ./cv_soc_devkit_ghrd/software/spl_bsp/uboot-socfpga
 	make -C cv_soc_devkit_ghrd/software/spl_bsp
 	rm -f ./host_tools/sd_image/preloader-mkpimage.bin
 	cp ./cv_soc_devkit_ghrd/software/spl_bsp/preloader-mkpimage.bin ./host_tools/sd_image/bootloader
