@@ -93,11 +93,11 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define __RW_MGR_CONTENT_ac_ref 0x10480000
 #define __RW_MGR_CONTENT_ac_nop 0x30780000
 #define __RW_MGR_CONTENT_ac_rdimm 0x10780000
-#define __RW_MGR_CONTENT_ac_mrs2_mirr 0x10090008
+#define __RW_MGR_CONTENT_ac_mrs2_mirr 0x10090010
 #define __RW_MGR_CONTENT_ac_write_bank_0_col_0_nodata 0x18180000
 #define __RW_MGR_CONTENT_ac_read_en 0x33780000
 #define __RW_MGR_CONTENT_ac_mrs3_mirr 0x100B0000
-#define __RW_MGR_CONTENT_ac_mrs2 0x100A0010
+#define __RW_MGR_CONTENT_ac_mrs2 0x100A0008
 
 /*
 Copyright (c) 2012, Altera Corporation
