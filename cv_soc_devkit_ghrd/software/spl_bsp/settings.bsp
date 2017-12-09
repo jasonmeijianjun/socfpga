@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>spl</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>May 10, 2015 1:44:32 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1431290672451</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 9, 2017 8:23:35 AM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1512779015524</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>./</BspGeneratedLocation>
-        <BspSettingsFile>software/preloader/settings.bsp</BspSettingsFile>
+        <BspSettingsFile>/work/altera/15.0/embedded/examples/hardware/de1_devkit_ghrd/software/spl_bsp/settings.bsp</BspSettingsFile>
         <HpsSettingsPath>../../hps_isw_handoff/soc_system_hps_0</HpsSettingsPath>
         <JdiFile>default</JdiFile>
         <Cpu xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
@@ -302,7 +302,7 @@
                 <SettingName>spl.boot.WATCHDOG_ENABLE</SettingName>
                 <Identifier>none</Identifier>
                 <Type>Boolean</Type>
-                <Value>0</Value>
+                <Value>1</Value>
                 <DefaultValue>1</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Enable watchdog during Preloader execution phase. Watchdog state remains after Preloader exits.</Description>
@@ -494,7 +494,7 @@
                 <SettingName>spl.boot.SDRAM_SCRUBBING</SettingName>
                 <Identifier>none</Identifier>
                 <Type>Boolean</Type>
-                <Value>1</Value>
+                <Value>0</Value>
                 <DefaultValue>0</DefaultValue>
                 <DestinationFile>public_mk_define</DestinationFile>
                 <Description>Scrub SDRAM to initialize the ECC bits</Description>
